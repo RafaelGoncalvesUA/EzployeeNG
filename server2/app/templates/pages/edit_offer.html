@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Ezployee{% endblock %}
+
+{% block content %}
+
+
+<div style="margin-top: 80px;">
+
+    <h1>Editar oferta</h1>
+    <hr/>
+
+    <div class="card-body py-5 px-md-5">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Title -->
+            <div class="form-outline mb-4">
+                {{form.title.label}}
+                {{form.title|add_class:"form-control"}}
+            </div>
+
+            <!-- Description -->
+            <div class="form-outline mb-4">
+                {{form.description.label}}
+                {{form.description|add_class:"form-control"|attr:"rows: 3"}}
+            </div>
+
+            <!-- Salary -->
+            <div class="form-outline mb-4">
+                {{form.salary_h.label}}
+                {{form.salary_h|add_class:"form-control"}}
+            </div>
+            
+            <!-- Hours/week -->
+            <div class="form-outline mb-4">
+                {{form.hours_per_week.label}}
+                {{form.hours_per_week|add_class:"form-control"}}
+            </div>
+
+
+            <!-- role -->
+            <div class="form-outline mb-4">
+                {{form.role.label}}
+                {{form.role|add_class:"form-control"}}
+            </div>
+
+
+            <!-- area -->
+            <div class="form-outline mb-4">
+                {{form.area.label}}
+                {{form.area|add_class:"form-control"}}
+            </div>
+
+
+            <!-- location -->
+            <div class="form-outline mb-4">
+                {{form.location.label}}
+                {{form.location|add_class:"form-control"}}
+            </div>
+
+            <!-- years_xp -->
+            <div class="form-outline mb-4">
+                {{form.years_xp.label}}
+                <select class="form-select" aria-label="Default select example" name="years_xp" id="id_years_xp">
+                    <option value="0-3 anos">0-3 anos</option>
+                    <option value="3-5 anos">3-5 anos</option>
+                    <option value="5-10 anos">5-10 anos</option>
+                    <option value="10+ anos">10+ anos</option>
+                </select>
+            </div>
+
+            <!-- work_model -->
+            <div class="form-outline mb-4">
+                {{form.work_model.label}}
+                <select class="form-select" aria-label="Default select example" name="work_model" id="id_work_model" value="">
+                    <option value="Remoto">Remoto</option>
+                    <option value="Presencial">Presencial</option>
+                    <option value="Híbrido">Híbrido</option>
+                </select>
+            </div>
+            
+            <!-- contract_type -->
+            <div class="form-outline mb-4">
+                {{form.contract_type.label}}
+                <select class="form-select" aria-label="Default select example" name="contract_type" id="id_contract_type">
+                    <option value="Tempo inteiro">Tempo inteiro</option>
+                    <option value="Meia jornada">Meia jornada</option>
+                    <option value="Estágio">Estágio</option>
+                </select>
+            </div>
+
+            <!-- date_expires -->
+            <div class="form-outline mb-4">
+                {{form.date_expires.label}}
+                {{form.date_expires|add_class:"form-control"|attr:"type:date"}}
+            </div>
+
+            <!-- Delete and save button -->
+            <div style="text-align: center; margin-top: 50px;">
+
+                <div class="row">
+                    <div class="col-6">
+                        <input type="submit" value="Eliminar oferta" name="delete" class="btn btn-primary btn-block delete-offer-btn"></input>
+                    </div>
+
+                    <div class="col-6">
+                        <input type="submit" value="Guardar alterações" name="save" class="btn btn-primary btn-block register-login-btn"></input>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById("id_years_xp").value = "{{offer.years_xp}}";
+    document.getElementById("id_work_model").value = "{{offer.work_model}}";
+    document.getElementById("id_contract_type").value = "{{offer.contract_type}}";
+</script>
+
+{% endblock %}

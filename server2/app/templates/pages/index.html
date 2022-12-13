@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Ezployee{% endblock %}
+
+{% block content %}
+
+<script>
+    document.getElementById("body_").classList.add("background1");
+</script>
+
+<div class="row banner-index">
+    <div class="col-7">
+        <p class="banner-title">Ezployee</p>
+        <p class="banner-text" style="font-weight: bold;">Abrimos portas ao seu futuro!</p>
+        <p class="banner-text" style="font-size: 13pt;">Com a Ezployee, descobrirá centenas de ofertas de trabalho, podendo uma delas corresponder ao seu emprego de sonho.</p>
+        
+        <a href="/register">
+            <button type="submit" class="btn btn-primary btn-block mb-4" style="margin-top: 15px; width: 250px">
+                Crie uma conta
+            </button>
+        </a>
+    </div>
+    <div class="col-5 banner-img"></div>
+</div>
+
+
+<div class="row">
+    <div class="col-4">
+        <div class="card-index">
+            <div class="card-index-img" style="background-image: url('../../static/images/verified.svg');"></div>
+            <p class="banner-text" style="font-size: 15pt; font-weight: bold; text-align: justify;">Centenas de empresas publicam semanalmente novas ofertas de trabalho, podendo ser você a pessoa à altura dos seus requisitos.</p>
+        </div>
+    </div>
+    
+    <div class="col-4">
+        <div class="card-index">
+            <div class="card-index-img" style="background-image: url('../../static/images/listings.svg');"></div>
+            <p class="banner-text" style="font-size: 15pt; font-weight: bold; text-align: justify;">As informações das ofertas (salários, requisitos, localizações, etc.) são atualizadas com frequência.</p>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card-index">
+            <div class="card-index-img" style="background-image: url('../../static/images/unique-audience.svg');"></div>
+            <p class="banner-text" style="font-size: 15pt; font-weight: bold; text-align: justify;">Para cada empresa, encontrará as opiniões de outros utilizadores, que o ajudarão na sua escolha.</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    document.getElementById("home").classList.add("active");
+</script>
+
+{% if session %}
+<script>
+    console.log("Logged in!")
+</script>
+{% else %}
+<script>
+    console.log("Not logged in!")
+</script>
+{% endif %}
+
+
+{% endblock %}
+

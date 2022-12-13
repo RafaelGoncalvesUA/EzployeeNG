@@ -1,0 +1,387 @@
+body {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+
+/* ---------- overide some bootstrap css ----------  */
+.form-control:focus {
+    border-color: rgb(125, 45, 199) !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(106, 39, 168) !important;
+}
+.form-control:hover {
+    border-color: rgb(125, 45, 199) !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(106, 39, 168) !important;
+}
+
+::selection {
+    color: white;
+    background-color: rgba(125, 45, 199, 0.8);
+}
+
+.btn-primary {
+    background-color: blueviolet !important;
+    border-style: none !important;
+}
+
+.btn-light {
+    background-color: white !important;
+    border-color: blueviolet !important;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 1px rgb(106, 39, 168) !important;
+}
+.form-select:hover,
+.form-select:focus {
+    border-color: rgb(125, 45, 199) !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(106, 39, 168) !important;
+}
+
+
+/*--------------- jquery-ui ---------------*/
+
+.ui-autocomplete {
+    background-color: white !important;
+}
+
+
+.ui-state-hover {
+    color: blueviolet !important;
+    background-color: white !important;
+    border-color: blueviolet !important;
+}
+
+/* ----------  Navbar ----------  */
+.navbar-top {
+    background-color: black!important;
+    min-height: 85px;
+    padding: 0 50px 0 50px !important;
+    box-shadow: 0 0px 8px rgba(0, 0, 0, .5);
+}
+
+.navbar-logo {
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 28pt !important;
+    color: white !important;
+}
+
+.navbar-text {
+    font-size: 14pt !important;
+    font-weight: lighter !important;
+    color: white !important;
+    padding: 0 15px 0 15px !important;
+    transition: font-weight .5s !important;
+}
+.navbar-text:hover {
+    color: rgb(183, 121, 241) !important;
+}
+
+.navbar-account {
+    font-size: 14pt !important;
+    color: white !important;
+}
+
+.register-btn {
+    background-color: blueviolet !important;
+    font-size: 14pt !important;
+    border-width: 0px !important;
+    font-weight: bold !important;
+    margin-left: 20px !important;
+}
+.register-btn:hover {
+    background-color: rgb(107, 33, 176) !important;
+}
+
+
+/* ----------  register form ----------  */
+.card-container {
+    position:relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 500px;
+    margin-top: 90px;
+}
+
+.card-form {
+    box-shadow: 0 0px 8px rgba(0, 0, 0, .3);
+}
+
+.description-input {
+    width: 100% !important;
+}
+
+.register-login-btn {
+    background-color: blueviolet !important;
+    font-size: 14pt !important;
+    border-width: 0px !important;
+    font-weight: bold !important;
+    width: 100% !important;
+    transition: all .2s ease-in-out !important;
+}
+.register-login-btn:hover {
+    background-color: rgb(107, 33, 176) !important;
+}
+
+
+
+
+/*------------------- Area reservada -------------------*/
+.td-table {
+    text-align: end;
+}
+
+.table-row {
+    font-weight: 300 !important;
+}
+
+.description {
+    background-color: rgb(243, 243, 243);
+    border-radius: 5px;
+    height: 100px;
+    padding: 10px 10px 10px 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(184, 184, 184);
+}
+
+.logo-div {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: gainsboro;
+    background-image: url("./images/default_image.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 250px;
+    height: 250px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: gray;
+    border-width: 1px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.option {
+    border-style: none;
+    width: 100%;
+    height: 180px;
+    background-color: rgb(229, 229, 229);
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    transition: all .2s ease-in-out !important;
+}
+
+.option:hover {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.option p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 15pt;
+    color: white;
+    font-weight: 700;
+    width: 80%;
+}
+
+
+/*--------------- Offers ---------------*/
+.offer {
+    margin-bottom: 20px;
+    background-color: 	white;
+    border-radius: 5px;
+    padding: 20px 20px 20px 20px !important;
+    border-color: rgb(184, 184, 184);
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    transition: all .2s ease-in-out !important;
+}
+
+.offer-title:hover {
+    color: rgb(72, 23, 100) !important;
+}
+
+.offer-logo {
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    background-image: url("./images/default_image.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;
+    /* box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px; */
+}
+
+.edit-offer-btn {
+    background-color: blueviolet !important;
+    font-size: 14pt !important;
+    border-width: 0px !important;
+    font-weight: bold !important;
+    width: 100% !important;
+    transition: all .2s ease-in-out !important;
+}
+.edit-offer-btn:hover {
+    background-color: rgb(107, 33, 176) !important;
+}
+
+.delete-offer-btn {
+    background-color: rgb(219, 57, 57) !important;
+    font-size: 14pt !important;
+    border-width: 0px !important;
+    font-weight: bold !important;
+    width: 100% !important;
+    transition: all .2s ease-in-out !important;
+}
+.delete-offer-btn:hover {
+    background-color: rgb(183, 50, 50) !important;
+}
+
+/*--------------- Comments ---------------*/
+.comment {
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px 20px 20px 20px !important;
+    border-color: rgb(184, 184, 184);
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    transition: all .2s ease-in-out !important;
+}
+
+
+
+.fav_button {
+    position: absolute;
+    top: 15px;
+    right: 15px ;
+    height: 50px;
+    width: 50px;
+    border-radius: 30px;
+    background-color: white;
+    color: blueviolet;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    font-size: 20pt;
+}
+
+.fav_button:hover {
+    cursor: pointer;
+    background-color: rgb(240, 240, 240);
+}
+
+.company_card{
+    background-color: 	rgb(112, 77, 23);
+    border-radius: 5px;
+    padding: 20px 20px 20px 20px !important;
+    border-color: rgb(184, 184, 184);
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.company_card:hover {
+    scale: 1.02;
+    transition: all .2s ease-in-out !important;
+}
+
+.company_logo{
+    height: 100px; 
+    width: 100px ; 
+    border-color: gray; 
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    /* box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px; */
+    background-color: white;
+    background-image: url("./images/default_image.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.company_logo:hover{
+    cursor: pointer;
+}
+
+
+
+
+
+/* index page */
+.banner-index {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(236, 236, 236);
+}
+
+.banner-title {
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 50pt;
+}
+
+.banner-text {
+    font-family: 'Nunito', sans-serif;
+    font-size: 22pt; 
+}
+
+.banner-img {
+    background-image: url("./images/banner.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+.card-index {
+    background-color: whitesmoke;
+    height: 370px;
+    border-radius: 10px;
+    padding: 30px 40px 40px 30px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(236, 236, 236);
+}
+
+.card-index-img {
+    width: 80px;
+    height: 80px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-bottom: 30px;
+}
+
+/*--------------- background ---------------*/
+body {
+    background-color: rgba(201, 164, 223, 0.2) !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.background1 {
+        background-image: url("images/flat-lay-photo-office-desk-with-laptop-copy-space-background.jpg") !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+        background-attachment: fixed !important;
+}
