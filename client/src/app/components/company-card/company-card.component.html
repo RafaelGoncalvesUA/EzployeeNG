@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-5">
                     <div class="company_logo" routerLink="/companies/{{company?.id}}">
-                        <img *ngIf="company?.logo != null" src="" style="width: 100%; height: 100%; border-radius: 5px;"/>
+                        <img [src]="logoImage" style="width: 100%; height: 100%; border-radius: 5px;"/>
                     </div>
 
                 </div>
@@ -22,6 +22,8 @@
                 </div>
 
             </div>
+
+
             <!-- {% if session == "user" %}
                 {% if company.fav %}
                     <a href="/favorite/remove/company/{{company.id}}">

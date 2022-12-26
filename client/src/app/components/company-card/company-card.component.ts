@@ -15,9 +15,42 @@ import { OnInit } from '@angular/core';
 export class CompanyCardComponent implements OnInit {
 
   @Input() company: Company | undefined;
+  logoImage: any;
+  isImageLoading: boolean = true;
 
   constructor(private apiRequestService : ApiRequestsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.company?.logo != null)
+      this.getImageFromService();
+    else
+      this.logoImage = "assets/images/default_image.png";
+  }
+
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+       this.logoImage = reader.result;
+    }, false);
+ 
+    if (image) {
+       reader.readAsDataURL(image);
+    }
+  }
+
+  
+ getImageFromService() {
+  if (this.company?.logo != null) {
+    this.isImageLoading = true;
+    this.apiRequestService.getImage(this.company?.logo).subscribe(data => {
+      this.createImageFromBlob(data);
+      this.isImageLoading = false;
+    }, error => {
+      this.isImageLoading = false;
+      console.log(error);
+    });
+  }
+}
 
 }

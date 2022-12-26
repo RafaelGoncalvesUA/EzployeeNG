@@ -11,6 +11,7 @@ import { Company } from '../classes/Company';
 export class ApiRequestsService {
 
   private baseUrl = 'http://localhost:8000/api';
+  private baseUrlImages = 'http://localhost:8000';
 
   constructor(private http: HttpClient) { }
 
@@ -23,5 +24,10 @@ export class ApiRequestsService {
   getCompanies(): Observable<Company[]> {
     const url = this.baseUrl + '/companies';
     return this.http.get<Company[]>(url);
+  }
+
+  getImage(fileName: string): Observable<Blob> {
+    const url = this.baseUrlImages + fileName;
+    return this.http.get(url, { responseType: 'blob' });
   }
 }
