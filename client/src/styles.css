@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+
+/* ---------- overide some bootstrap css ----------  */
+.form-control:focus {
+    border-color: rgb(125, 45, 199) !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(106, 39, 168) !important;
+}
+.form-control:hover {
+    border-color: rgb(125, 45, 199) !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(106, 39, 168) !important;
+}
+
+::selection {
+    color: white;
+    background-color: rgba(125, 45, 199, 0.8);
+}
+
+.btn-primary {
+    background-color: blueviolet !important;
+    border-style: none !important;
+}
+
+.btn-light {
+    background-color: white !important;
+    border-color: blueviolet !important;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 1px rgb(106, 39, 168) !important;
+}
+.form-select:hover,
+.form-select:focus {
+    border-color: rgb(125, 45, 199) !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(106, 39, 168) !important;
+}
+
+
+/*--------------- jquery-ui ---------------*/
+
+.ui-autocomplete {
+    background-color: white !important;
+}
+
+
+.ui-state-hover {
+    color: blueviolet !important;
+    background-color: white !important;
+    border-color: blueviolet !important;
+}

@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-top">
+    <div class="container-fluid">
+        <a class="navbar-brand navbar-logo" routerLink="/">Ezployee</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div style="margin: 0 auto 0 auto;">
+                <div class="navbar-nav">
+                    <a id="home" class="nav-link navbar-text" routerLink="/">Início</a>
+                    <a id="empresas" class="nav-link navbar-text" routerLink="/companies">Empresas</a>
+                    <a id="ofertas" class="nav-link navbar-text" routerLink="/offers">Ofertas</a>
+                    <a id="reservada" class="nav-link navbar-text" routerLink="/reserved">Área Reservada</a>
+                </div>
+            </div>
+            
+
+            <div *ngIf="loggedIn; else loggedOut" class="navbar-nav">
+                <a class="nav-link navbar-account" routerLink="/logout">Logout</a>
+            </div>
+            
+            <ng-template #loggedOut>
+                <a class="nav-link navbar-account" routerLink="/login">Entrar</a>
+                <button type="button" class="btn btn-primary register-btn" routerLink="/register">Criar conta</button>
+            </ng-template>
+        
+        </div>
+    </div>
+</nav>
