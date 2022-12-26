@@ -1,3 +1,7 @@
+# Dependencias
+npm install class-transformer --save
+npm install reflect-metadata --save
+
 # Client
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.1.

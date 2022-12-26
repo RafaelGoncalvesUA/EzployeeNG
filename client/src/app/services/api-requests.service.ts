@@ -1,15 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Offer } from '../classes/Offer';
+import { Company } from '../classes/Company';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiRequestsService {
 
+  private baseUrl = 'http://localhost:8000/api';
+
   constructor(private http: HttpClient) { }
 
-  getCompanies(): any {
-    console.log('getCompanies() called');
-    return this.http.get('http://localhost:8000/api/companies');
+
+  getOffers(): Observable<Offer[]> {
+    const url = this.baseUrl + '/offers';
+    return this.http.get<Offer[]>(url);
+  }
+
+  getCompanies(): Observable<Company[]> {
+    const url = this.baseUrl + '/companies';
+    return this.http.get<Company[]>(url);
   }
 }

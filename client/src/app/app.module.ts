@@ -13,6 +13,7 @@ import { IndexPageComponent } from './pages/index-page/index-page.component';
 import { ReservedAreaPageComponent } from './pages/reserved-area-page/reserved-area-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { OfferCardComponent } from './components/offer-card/offer-card.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
     IndexPageComponent,
     ReservedAreaPageComponent,
     RegisterPageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    OfferCardComponent
   ],
   imports: [
     BrowserModule,
