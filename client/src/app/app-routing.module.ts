@@ -10,7 +10,9 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 const routes: Routes = [
   {path: '', component: IndexPageComponent},
   {path: 'companies', component: CompaniesPageComponent},
+  {path: 'companies/:id', component: CompaniesPageComponent},
   {path: 'offers', component: OffersPageComponent},
+  {path: 'offers/:id', component: OffersPageComponent},
   {path: 'reserved', component: ReservedAreaPageComponent},
   {path: 'register', component: RegisterPageComponent},
   {path: 'login', component: LoginPageComponent}
