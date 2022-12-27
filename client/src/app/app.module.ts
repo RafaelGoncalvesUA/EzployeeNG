@@ -14,6 +14,8 @@ import { ReservedAreaPageComponent } from './pages/reserved-area-page/reserved-a
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { OfferCardComponent } from './components/offer-card/offer-card.component';
+import { CompanyPageComponent } from './pages/company-page/company-page.component';
+import { OfferPageComponent } from './pages/offer-page/offer-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { OfferCardComponent } from './components/offer-card/offer-card.component
     ReservedAreaPageComponent,
     RegisterPageComponent,
     LoginPageComponent,
-    OfferCardComponent
+    OfferCardComponent,
+    CompanyPageComponent,
+    OfferPageComponent
   ],
   imports: [
     BrowserModule,

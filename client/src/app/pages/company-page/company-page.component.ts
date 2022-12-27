@@ -1,26 +1,36 @@
 import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Company } from 'src/app/classes/Company';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
-import { Input } from '@angular/core';
-import { OnInit } from '@angular/core';
-
+import { lastValueFrom } from 'rxjs';
 
 @Component({
-  selector: 'app-company-card',
-  templateUrl: './company-card.component.html',
-  styleUrls: ['./company-card.component.css']
+  selector: 'app-company-page',
+  templateUrl: './company-page.component.html',
+  styleUrls: ['./company-page.component.css']
 })
 
 
-export class CompanyCardComponent implements OnInit {
-
-  @Input() company: Company | undefined;
+export class CompanyPageComponent implements OnInit {
+  companyId: number | undefined;
+  company: Company | undefined;
   logoImage: any;
-  isImageLoading: boolean = true;
+  isImageLoading: boolean = false;
 
-  constructor(private apiRequestService : ApiRequestsService) {}
+  constructor(private route: ActivatedRoute, private apiRequestService : ApiRequestsService) {}
 
-  ngOnInit() {
+   ngOnInit(): void {
+    this.companyId = this.route.snapshot.paramMap.get('id') != null ? parseInt(this.route.snapshot.paramMap.get('id')!) : undefined;
+    this.getCompanyById();
+  }
+
+
+  //async para esperar pelo ultimo valor do observable
+  async getCompanyById() {
+    const aux$ = this.apiRequestService.getCompanyById(this.companyId!);
+    this.company = await lastValueFrom(aux$);
+
     if (this.company?.logo != null)
       this.getImageFromService();
     else
@@ -52,5 +62,6 @@ export class CompanyCardComponent implements OnInit {
       });
     }
   }
+
 
 }

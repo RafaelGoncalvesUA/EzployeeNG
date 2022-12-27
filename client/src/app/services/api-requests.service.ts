@@ -21,9 +21,19 @@ export class ApiRequestsService {
     return this.http.get<Offer[]>(url);
   }
 
+  getOfferById(id: number): Observable<Offer> {
+    const url = this.baseUrl + '/offers?id=' + id;
+    return this.http.get<Offer>(url);
+  }
+
   getCompanies(): Observable<Company[]> {
     const url = this.baseUrl + '/companies';
     return this.http.get<Company[]>(url);
+  }
+
+  getCompanyById(id: number): Observable<Company> {
+    const url = this.baseUrl + '/companies?id=' + id;
+    return this.http.get<Company>(url);
   }
 
   getImage(fileName: string): Observable<Blob> {

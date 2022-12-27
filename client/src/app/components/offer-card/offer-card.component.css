@@ -1,4 +1,11 @@
-/*--------------- Offers ---------------*/
+.td-table {
+    text-align: end;
+}
+
+.table-row {
+    font-weight: 300 !important;
+}
+
 .offer {
     margin-bottom: 20px;
     background-color: 	white;
