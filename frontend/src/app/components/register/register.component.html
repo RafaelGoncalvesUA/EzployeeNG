@@ -1,1 +1,55 @@
-<p>register works!</p>
+<div class="container" style="margin: 85px 0 80px 0">
+    <div class="card-container">
+        <div class="card card-form">
+
+            <div style="text-align: center; margin: 35px 0 10px 0;">
+                <h1 class="card-title">Criar conta</h1>
+            </div>
+
+            <div class="card-body py-5 px-md-5">
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                            <p style="margin: 0">Nome</p>
+                            <input #fname type="text" name="nome" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                            <p style="margin: 0">Apelido</p>
+                            <input #lname type="text" name="apelido" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Email</p>
+                    <input #email type="email" name="email" class="form-control" required>
+                </div>
+                
+                <!-- Password -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Password</p>
+                    <input #password type="password" name="password" class="form-control" required>
+                </div>
+
+                    <!-- Errors -->
+                    <!-- {% if error_account %}<p style="color: red;">Esta conta já existe</p>{% endif %} -->
+
+                    <!-- Submit button -->
+                    <div style="text-align: center; margin-top: 50px;">
+                        <button (click)="register(fname.value, lname.value, email.value, password.value)" class="btn btn-primary btn-block mb-4 register-login-btn">
+                            Criar conta
+                        </button>
+                    </div>
+
+                
+                <div style="text-align: center; margin-top: 20px">
+                    <a style="color: blueviolet;" routerLink="/register_company">É uma empresa? Criar uma conta empresarial</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

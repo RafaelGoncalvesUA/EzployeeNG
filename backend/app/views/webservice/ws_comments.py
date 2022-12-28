@@ -8,8 +8,8 @@ from app.serializers import *
 from app.models import *
 
 # @api_view(['GET'])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([TokenAuthentication])
+# @permission_classes([IsAuthenticated])
 def get_comments(request):
     company_id = int(request.GET['id'])
     comments = Comment.objects.filter(company_id=Company.objects.get(id=company_id))

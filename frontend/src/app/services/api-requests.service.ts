@@ -43,4 +43,9 @@ export class ApiRequestsService {
     const url = this.baseUrlImages + fileName;
     return this.http.get(url, { responseType: 'blob' });
   }
+
+  authenticate(email: string, password: string): Observable<any> {
+    const url = this.baseUrl + '/login/';
+    return this.http.post(url, { email, password });
+  }
 }

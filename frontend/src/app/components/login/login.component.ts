@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { ApiRequestsService } from 'src/app/services/api-requests.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +11,18 @@ import { OnInit } from '@angular/core';
 
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  response: any;
   
-  ngOnInit(): void { }
+  constructor(private apiRequestsService: ApiRequestsService) { }
+  
+  ngOnInit(): void {
+  }
 
-  login(email: string, password: string) {
-    console.log(email, password);
+  async login(email: string, password: string) {
+    const response$ = this.apiRequestsService.authenticate(email, password);
+    this.response = await lastValueFrom(response$);
+    sessionStorage.setItem('token', this.response.token);
+    sessionStorage.setItem('user', this.response.user);
   }
 
 }

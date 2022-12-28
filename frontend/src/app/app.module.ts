@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,9 +17,10 @@ import { OfferCardComponent } from './components/offer-card/offer-card.component
 import { CompanyPageComponent } from './pages/company-page/company-page.component';
 import { OfferPageComponent } from './pages/offer-page/offer-page.component';
 import { RegisterCompanyPageComponent } from './pages/register-company-page/register-company-page.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { RegisterCompanyComponent } from './register-company/register-company.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { RegisterCompanyComponent } from './components/register-company/register-company.component';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,14 @@ import { RegisterCompanyComponent } from './register-company/register-company.co
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ApiRequestsService],
+  providers: [
+    ApiRequestsService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

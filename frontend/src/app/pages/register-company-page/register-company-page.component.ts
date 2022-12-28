@@ -13,8 +13,4 @@ export class RegisterCompanyPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  register(name:string, email:string, password:string, location:string, description:string, logo:any) {
-    console.log(name, email, password, location, description, logo);
-  }
-
 }
