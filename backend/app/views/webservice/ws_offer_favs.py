@@ -20,6 +20,12 @@ def post_offer_fav(request):
     user.fav_offers.add(offer)
     return Response(status=status.HTTP_201_CREATED)
 
+# @api_view(['DELETE'])
+def delete_offer_fav(request):
+    user = User.objects.get(id=request.data['user_id'])
+    offer = Offer.objects.get(id=request.data['offer_id'])
+    user.fav_offers.remove(offer)
+    return Response(status=status.HTTP_200_OK)
 
 @api_view(['GET', 'POST'])
 def ws_offer_favs(request):
@@ -28,5 +34,7 @@ def ws_offer_favs(request):
             return get_offer_favs(request)
         elif request.method == 'POST':
             return post_offer_fav(request)
-    except:
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        elif request.method == 'DELETE':
+            return delete_offer_fav(request)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)

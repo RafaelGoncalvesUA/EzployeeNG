@@ -98,6 +98,6 @@ def ws_offers(request):
             return put_offer(request)
         elif request.method == 'DELETE':
             return delete_offer(request)
-    except:
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 

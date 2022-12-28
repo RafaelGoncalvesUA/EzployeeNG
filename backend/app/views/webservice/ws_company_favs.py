@@ -20,13 +20,22 @@ def post_company_fav(request):
     user.fav_companies.add(company)
     return Response(status=status.HTTP_201_CREATED)
 
+# @api_view(['DELETE'])
+def delete_company_fav(request):
+    user = User.objects.get(id=request.data['user_id'])
+    company = Company.objects.get(id=request.data['company_id'])
+    user.fav_companies.remove(company)
+    return Response(status=status.HTTP_200_OK)
 
-@api_view(['GET', 'POST'])
+
+@api_view(['GET', 'POST', 'DELETE'])
 def ws_company_favs(request):
     try:
         if request.method == 'GET':
             return get_company_favs(request)
         elif request.method == 'POST':
             return post_company_fav(request)
-    except:
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        elif request.method == 'DELETE':
+            return delete_company_fav(request)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
