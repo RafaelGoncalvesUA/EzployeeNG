@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Ezployee{% endblock %}
+
+{% block content %}
+
+<script>
+    document.getElementById("empresas").classList.add("active");
+</script>
+
+
+<form action="." method="POST">
+    {% csrf_token %}
+    <div class="row">
+
+        <div class="col-12 col-md-2"></div>
+        <div class="col-12 col-md-4" style="margin-top: 10px; text-align: center; vertical-align: middle;">
+            {{ form.name.label_tag }}
+            <div style="margin-top: 10px ;"></div>
+            {{ form.name|add_class:"form-control" }}
+        </div>
+        <div class="col-12 col-md-2" style="margin-top: 10px;text-align: center; vertical-align: middle;">
+            {{ form.rating.label_tag }}
+            <div style="margin-top: 10px ;"></div>
+            {{ form.rating|add_class:"form-select" }}
+        </div>
+        <div class="col-12 col-md-2" style="margin-top: 10px;text-align: center; vertical-align: middle;">
+            {{ form.order.label_tag }}
+            <div style="margin-top: 10px ;"></div>
+            {{ form.order|add_class:"form-select" }}
+        </div>
+        <div class="col-12 col-md-2"></div>
+        <div style="margin-top: 10px;"></div>
+
+        <hr style="margin-top: 20px ;">
+        <h1 class="col-6 "> Resultados </h1>
+        <div class="col-6 ">
+            <div style="width: 100%; position: relative;">
+                <button type="submit" class="btn btn-primary" style="width: 200px ; height: 45px; right: 0; position: absolute;">
+                    Filtrar
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div class="row" style="margin-top: 25px;">
+    {% if companies %}
+        {% for company in companies %}
+
+            {% include 'company_card.html' with company=company %}
+
+        {% endfor %}
+    {% else %}
+        <div class="col-12">
+            <h4>Sem empresas correspondentes aos filtros.</h4>
+        </div>
+    {% endif %}
+
+</div>
+
+
+<script>
+    $(function() {
+        var names = [
+            {% for company in companies %}
+                "{{ company.name }}",
+            {% endfor %}
+        ];
+        $("#id_name").autocomplete({
+            source: function(request, response) {
+                var results = $.ui.autocomplete.filter(names, request.term);
+                response(results.slice(0, 10));
+            }
+        });
+    });
+</script>
+
+
+{% endblock %}
+
+

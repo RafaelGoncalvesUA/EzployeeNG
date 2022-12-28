@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}Ezployee{% endblock %}
+
+{% block content %}
+
+    <h2 style="text-align: center">{{ offer.title }}</h2>
+    <hr/>
+    <h4 style="margin-top: 30px; text-align: center">Informações</h4>
+
+    <div class="row" style="margin-top: 40px;">
+
+
+        <div class="col-2"></div>
+
+        <!-- Table with company info  -->
+        <div class="col-8">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th scope="row" class="table-row">ID</th>
+                    <td class="td-table">{{offer.id}}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Company ID</th>
+                    <td class="td-table">{{offer.company.id}}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Company name</th>
+                    <td class="td-table">{{offer.company.name}}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Salário/hora</th>
+                    <td class="td-table">{{offer.salary_h}} €</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Horas/semana</th>
+                    <td class="td-table">{{offer.hours_per_week}}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Cargo/papel</th>
+                    <td class="td-table">{{offer.role}}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Área</th>
+                    <td class="td-table">{{offer.area}}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Localização</th>
+                    <td class="td-table">{{offer.location}}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Anos de experiência</th>
+                    <td class="td-table">{{offer.years_xp}}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Modelo de trabalho</th>
+                    <td class="td-table">{{offer.work_model}}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Tipo de contrato</th>
+                    <td class="td-table">{{offer.contract_type}}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Data de publicação</th>
+                    <td class="td-table">{{offer.date_posted}}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Data de expiração</th>
+                    <td class="td-table">{{offer.date_expires}}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Ativo</th>
+                    <td class="td-table">{{offer.is_active}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="col-2"></div>
+
+            <div style="margin-top: 30px; padding: 5px 5px 5px 5px;">
+                <p style="margin-bottom: 5px;">Description</p>
+                <div class="description">
+                    <p>{{offer.description}}</p>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="/company/{{offer.company.id}}">
+                    <button class="btn btn-primary edit-offer-btn" style="margin-top: 20px;">Ver página da empresa</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

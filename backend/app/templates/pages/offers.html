@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Ezployee{% endblock %}
+
+{% block content %}
+
+<script>
+    document.getElementById("ofertas").classList.add("active");
+</script>
+
+<form action="." method="POST">
+    {% csrf_token %}
+    <div class="row">
+
+        <div class="col-12 col-md-3" style="margin-top: 10px; text-align: center; vertical-align: middle;">
+            {{ form.title.label_tag }}
+            <div style="margin-top: 10px ;"></div>
+            {{ form.title|add_class:"form-control" }}
+        </div>
+        <div class="col-12 col-md-3" style="margin-top: 10px; text-align: center; vertical-align: middle;">
+            {{ form.salary_min.label_tag }}
+            <div style="margin-top: 10px ;"></div>
+            {{ form.salary_min|add_class:"form-control" }}
+        </div>
+        <div class="col-12 col-md-3" style="margin-top: 10px; text-align: center; vertical-align: middle;">
+            {{ form.salary_max.label_tag }}
+            <div style="margin-top: 10px ;"></div>
+            {{ form.salary_max|add_class:"form-control" }}
+        </div>
+        <div class="col-12 col-md-3" style="margin-top: 10px; text-align: center; vertical-align: middle;">
+            {{ form.order.label_tag }}
+            <div style="margin-top: 10px ;"></div>
+            {{ form.order|add_class:"form-select" }}
+        </div>
+        <div class="col-12 col-md-3" style="margin-top: 10px ;">
+            <div style="text-align: center;">
+                {{ form.years_xp.label_tag }}
+            </div>
+            <div style="margin-top: 10px ;"></div>
+            <div style="width: 40%; margin: 0 auto">
+                {{ form.years_xp}}
+            </div>
+        </div>
+        <div class="col-12 col-md-3" style="margin-top: 10px ;">
+            <div style="text-align: center;">
+                {{ form.work_model.label_tag }}
+            </div>
+            <div style="margin-top: 10px ;"></div>
+            <div style="width: 40%; margin: 0 auto">
+                {{ form.work_model}}
+            </div>
+        </div>
+        <div class="col-12 col-md-3" style="margin-top: 10px ;">
+            <div style="text-align: center;">
+                {{ form.contract_type.label_tag }}
+            </div>
+            <div style="margin-top: 10px ;"></div>
+            <div style="width: 40%; margin: 0 auto">
+                {{ form.contract_type }}
+            </div>
+        </div>
+        <div class="col-12 col-md-3"></div>
+
+
+
+
+        <hr style="margin-top: 20px ;">
+        <h1 class="col-6"> Resultados </h1>
+        <div class="col-6 ">
+            <div style="width: 100%; position: relative;">
+                <button type="submit" class="btn btn-primary" style="width: 200px ; height: 45px; right: 0; position: absolute;">
+                    Filtrar
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="row" style="margin-top: 25px;">
+
+    {% if offers %}
+        {% for offer in offers %}
+            <div class="col-12 col-xl-6">
+                {% include "offer_card.html" with offer=offer %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-12">
+            <h4>Sem ofertas correspondentes aos filtros.</h4>
+        </div>
+    {% endif %}
+
+
+</div>
+
+<script>
+    $(function() {
+        var titles = [
+            {% for offer in offers %}
+                "{{ offer.title }}",
+            {% endfor %}
+        ];
+        $("#id_title").autocomplete({
+            source: function(request, response) {
+                var results = $.ui.autocomplete.filter(titles, request.term);
+                response(results.slice(0, 10));
+            }
+        });
+    });
+</script>
+
+{% endblock %}

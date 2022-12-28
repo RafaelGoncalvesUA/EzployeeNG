@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Ezployee{% endblock %}
+
+{% block content %}
+    <div style="margin-top: 50px; margin-bottom: 60px;">
+        <h4>Informações de Empresa</h4>
+
+        {% include 'company_info.html' with company=company %}
+    </div>
+
+    {% if session != "user" %}
+
+        <h4>Faça <a href="/login" style="color: blueviolet ">login</a> como utilizador para comentar!</h4>
+
+    {% else %}
+
+        <form action="." method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-10">
+                    {{ form.text.label_tag }}
+                    <div style="margin-top: 10px ;"></div>
+                    {{ form.text|add_class:"form-control text_area"|attr:"rows: 4"}}
+                    <style>
+                        .text_area{
+                            height: 90px;
+                        }
+                    </style>
+                </div>
+                <div class="col-2">
+                    {{ form.rating.label_tag }}
+                    <div style="margin-top: 10px ;"></div>
+                    {{ form.rating|add_class:"form-select"}}
+                    <div style="margin-top: 10px ;"></div>
+                    <input type="submit" value="Submit" class="btn btn-primary" style="width: 100%; height: 40px"/>
+                </div>
+            </div>
+        </form>
+
+    {% endif %}
+
+    <hr/>
+
+    {% for comment in comments %}
+
+        {% include 'comment_card.html' with comment=comment %}
+
+    {% endfor %}
+
+
+{% endblock %}

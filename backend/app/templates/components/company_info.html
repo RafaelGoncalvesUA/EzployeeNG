@@ -1,0 +1,58 @@
+<!-- Company account info -->
+
+    <div class="row" style="margin-top: 20px;">
+
+        <!-- Table with company info  -->
+        <div class="col-8">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row" class="table-row">Company ID</th>
+                        <td class="td-table">{{company.id}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="table-row">Name</th>
+                        <td class="td-table">{{company.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="table-row">Email</th>
+                        <td class="td-table">{{company.email}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="table-row">Localização</th>
+                        <td class="td-table">{{company.location}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="table-row">Classificação média</th>
+                        <td class="td-table">{{company.avg_rating}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="table-row">Nº de classificações</th>
+                        <td class="td-table">{{company.num_ratings}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 30px; padding: 5px 5px 5px 5px;">
+                <p style="margin-bottom: 5px;">Description</p>
+                <div class="description">
+                    <p>{{company.description}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Company logo  -->
+        <div class="col-4">
+            {% if company.logo %}
+                <div class="logo-div" style="background-image: url('{{company.logo.url}}');"></div>
+            {% else %}
+                <div class="logo-div"></div>
+            {% endif %}
+        </div>
+    </div>
+

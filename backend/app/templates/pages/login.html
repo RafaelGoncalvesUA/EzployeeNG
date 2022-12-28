@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Ezployee{% endblock %}
+
+{% block content %}
+
+<div class="container" style="margin: 85px 0 80px 0">
+    <div class="card-container">
+        <div class="card card-form">
+
+            <div style="text-align: center; margin: 35px 0 10px 0;">
+                <h1 class="card-title">Login</h1>
+            </div>
+
+            <div class="card-body py-5 px-md-5">
+                <form method="post">
+                    {% csrf_token %}
+
+                    <!-- Email -->
+                    <div class="form-outline mb-4">
+                        {{form.email.label}}
+                        {{form.email|add_class:"form-control"}}
+                    </div>
+                    
+                    <!-- Password -->
+                    <div class="form-outline mb-4">
+                        {{form.password.label}}
+                        {{form.password|add_class:"form-control"|attr:"type:password"}}
+                    </div>
+
+                    
+                    <!-- Errors -->
+                    {% if error_pass %}<p style="color: red;">Password incorreta</p>{% endif %}
+                    {% if error_account %}<p style="color: red;">Esta conta não existe</p>{% endif %}
+
+                    <!-- Submit button -->
+                    <div style="text-align: center; margin-top: 50px;">
+                        <button type="submit" class="btn btn-primary btn-block mb-4 register-login-btn">
+                            Login
+                        </button>
+                    </div>
+
+                </form>
+                <div style="text-align: center; margin-top: 20px">
+                    <a style="color: blueviolet;" href="/register">Ainda não tem conta? Criar conta agora</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--Button behavior-->
+<script>
+    function register_redirect() {
+        window.location.href = "/register";
+    }
+</script>
+{% endblock %}
+
+
+
+

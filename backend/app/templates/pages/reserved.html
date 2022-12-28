@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}Ezployee{% endblock %}
+
+{% block content %}
+
+    <!-------------------------------------------- USER ACCOUNT -------------------------------------------->
+    {% if session.type == "user" %}
+        <h1 style="text-align: center">Área Reservada</h1>
+        <hr/>
+
+        <div style="margin-bottom: 60px; margin-top: 50px;">
+        <h4 style="text-align: center">Dados pessoais</h4>
+
+
+        <div class="row" style="margin-top: 30px;">
+            <!-- Table with user info  -->
+            <div class="col-2"></div>
+            <div class="col-8">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th scope="row" class="table-row">User ID</th>
+                        <td class="td-table">{{user.id}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="table-row">Nome</th>
+                        <td class="td-table">{{user.first_name}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="table-row">Apelido</th>
+                        <td class="td-table">{{user.last_name}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="table-row">Email</th>
+                        <td class="td-table">{{user.email}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-2"></div>
+        </div>
+
+        <!-- Other operations -->
+        <div style="margin-top: 30px;">
+            <h4 style="text-align: center; margin-bottom: 30px;">Outras operações</h4>
+            <div class="row align-items-start" style="margin-top: 20px;">
+                <div class="col-3"></div>
+                <div class="col-3">
+                    <button onclick="edit()" class="option" style="background-color: rgb(137, 174, 218);">
+                        <p>Alterar dados pessoais</p>
+                    </button>
+                </div>
+
+                <div onclick="favs()" class="col-3">
+                    <button class="option" style="background-color: rgba(63, 162, 130);">
+                        <p>Os meus favoritos</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!--Buttons behavior-->
+        <script>
+            function edit() {window.location.href = "./edit"}
+        </script>
+
+        <script>
+            function favs() {window.location.href = "/myfavorites"}
+        </script>
+    {% endif %}
+
+
+
+    <!-------------------------------------------- COMPANY ACCOUNT -------------------------------------------->
+    {% if session.type == "company" %}
+        <h1 style="text-align: center">Área Reservada</h1>
+        <hr/>
+
+        <div style="margin-bottom: 60px; margin-top: 50px;">
+            <h4 style="text-align: center">Dados da empresa</h4>
+            {% include 'company_info.html' with company=company %}
+        </div>
+
+        <!-- Other operations -->
+        <div>
+            <h4 style="text-align: center; margin-bottom: 30px;">Outras operações</h4>
+            <div class="row align-items-start" style="margin-top: 20px;">
+
+                <div class="col-3">
+                    <button onclick="edit()" class="option" style="background-color: rgb(137, 174, 218);">
+                        <p>Alterar dados da empresa</p>
+                    </button>
+                </div>
+
+                <div class="col-3">
+                    <button onclick="add_offer()" class="option" style="background-color: rgb(204, 161, 193);">
+                        <p>Criar nova oferta</p>
+                    </button>
+                </div>
+
+                <div class="col-3">
+                    <button onclick="offers()" class="option" style="background-color: rgba(241, 159, 139);">
+                        <p>As minhas ofertas</p>
+                    </button>
+                </div>
+
+                <div onclick="comments()" class="col-3">
+                    <button class="option" style="background-color: rgba(63, 162, 130);">
+                        <p>Comentários de utilizadores</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!--Buttons behavior-->
+        <script>
+            function edit() {window.location.href = "edit"}
+            function offers() {window.location.href = "offers"}
+            function add_offer() {window.location.href = "offer"}
+            function comments() {window.location.href = "comments"}
+        </script>
+    {% endif %}
+
+{% endblock %}
