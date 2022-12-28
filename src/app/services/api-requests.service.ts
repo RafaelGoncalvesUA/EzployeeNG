@@ -26,8 +26,11 @@ export class ApiRequestsService {
     return this.http.get<Offer>(url);
   }
 
-  getCompanies(): Observable<Company[]> {
+  getCompanies(args?: any): Observable<Company[]> {
     const url = this.baseUrl + '/companies';
+
+    if (args)
+      return this.http.get<Company[]>(url, { params: args });
     return this.http.get<Company[]>(url);
   }
 

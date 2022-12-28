@@ -17,5 +17,16 @@ export class CompaniesPageComponent implements OnInit {
   ngOnInit() {
     this.apiRequestsService.getCompanies().subscribe(companies => this.companies = companies);
   }
+
+  filterCompanies(name: string, rating: string, order: string) {
+
+    let filters = {
+      "name": name,
+      "rating": rating,
+      "order": order
+    };
+
+    this.apiRequestsService.getCompanies(filters).subscribe(companies => this.companies = companies);
+  }
     
 }
