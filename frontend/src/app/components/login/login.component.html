@@ -1,0 +1,41 @@
+<div class="container" style="margin: 85px 0 80px 0">
+    <div class="card-container">
+        <div class="card card-form">
+
+            <div style="text-align: center; margin: 35px 0 10px 0;">
+                <h1 class="card-title">Login</h1>
+            </div>
+
+            <div class="card-body py-5 px-md-5">
+
+                <!-- Email -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Email</p>
+                    <input #email type="email" name="email" class="form-control" required>
+                </div>
+                
+                <!-- Password -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Password</p>
+                    <input #password type="password" name="password" class="form-control" required>
+                </div>
+
+                
+                <!-- Errors -->
+                <!-- {% if error_pass %}<p style="color: red;">Password incorreta</p>{% endif %}
+                {% if error_account %}<p style="color: red;">Esta conta não existe</p>{% endif %} -->
+
+                <!-- Submit button -->
+                <div style="text-align: center; margin-top: 50px;">
+                    <button (click)="login(email.value, password.value)" class="btn btn-primary btn-block mb-4 register-login-btn">
+                        Login
+                    </button>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px">
+                    <a style="color: blueviolet;" routerLink="/register">Ainda não tem conta? Criar conta agora</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

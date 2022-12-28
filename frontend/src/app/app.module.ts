@@ -17,6 +17,9 @@ import { OfferCardComponent } from './components/offer-card/offer-card.component
 import { CompanyPageComponent } from './pages/company-page/company-page.component';
 import { OfferPageComponent } from './pages/offer-page/offer-page.component';
 import { RegisterCompanyPageComponent } from './pages/register-company-page/register-company-page.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { RegisterCompanyComponent } from './register-company/register-company.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { RegisterCompanyPageComponent } from './pages/register-company-page/regi
     OfferCardComponent,
     CompanyPageComponent,
     OfferPageComponent,
-    RegisterCompanyPageComponent
+    RegisterCompanyPageComponent,
+    LoginComponent,
+    RegisterComponent,
+    RegisterCompanyComponent
   ],
   imports: [
     BrowserModule,
