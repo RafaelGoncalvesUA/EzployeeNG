@@ -3,8 +3,6 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from app.views.website import companies, index, auth, reserved, company, favorite, myfavorites, offers
-
 from app.views.webservice import ws_auth, ws_offers, ws_companies, ws_comments, ws_offer_favs, ws_company_favs, ws_account
 
 
