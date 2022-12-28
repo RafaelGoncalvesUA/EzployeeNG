@@ -24,7 +24,7 @@ def login(request):
                 response["type"] = "user"
                 return Response(response, status=status.HTTP_200_OK)
         except MyUser.DoesNotExist:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+            pass
 
         try:
             company = Company.objects.get(email=email)

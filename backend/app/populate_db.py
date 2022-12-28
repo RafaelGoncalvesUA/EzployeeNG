@@ -13,7 +13,7 @@ def populate_companies():
             id=id_,
             name=name,
             email=email,
-            password=password,
+            password=make_password(password),
             description=description,
             location=location
         )
