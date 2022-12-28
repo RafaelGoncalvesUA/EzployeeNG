@@ -26,4 +26,8 @@ export class OffersPageComponent implements OnInit {
     this.apiRequestsService.getOffers().subscribe(offers => this.offers = offers);
   }
 
+  filterOffers(filter: string) {
+    console.log(filter);
+  }
+
 }
