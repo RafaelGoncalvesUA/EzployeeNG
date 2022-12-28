@@ -75,5 +75,5 @@ def ws_companies(request):
             return put_company(request)
         elif request.method == 'DELETE':
             return delete_company(request)
-    except:
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
