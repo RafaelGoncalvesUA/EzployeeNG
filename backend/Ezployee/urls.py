@@ -3,7 +3,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from app.views.webservice import ws_auth, ws_offers, ws_companies, ws_comments, ws_offer_favs, ws_company_favs, ws_account
+from app.views.webservice import ws_auth, ws_offers, ws_companies, ws_comments, ws_offer_favs, ws_company_favs, ws_account, ws_statistics
 
 
 urlpatterns = [
@@ -19,6 +19,7 @@ urlpatterns = [
     path("api/offer/favs/", ws_offer_favs.ws_offer_favs),
     path("api/company/favs/", ws_company_favs.ws_company_favs),
     path("api/account/", ws_account.put_account),
+    path("api/statistics/", ws_statistics.get_statistics),
 ]
 
 if settings.DEBUG:
