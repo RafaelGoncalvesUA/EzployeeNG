@@ -24,8 +24,4 @@
 | /api/company/favs/ | POST | { "company_id": "int", "user_id": "int" } | Add company to user's favorites |
 | /api/company/favs/ | DELETE| { "company_id": "int", "user_id": "int" } | Remove company from user's favorites |
 | /api/account/ | PUT | UserSerializer | update user account |
-
-TODO:
-- [] filters
-- [] security
-- [] ajustar PUT (tirar o ?id=x ?)
+| /api/statistics/ | GET | - | get statistics |
