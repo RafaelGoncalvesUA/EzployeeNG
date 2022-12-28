@@ -17,6 +17,10 @@
 | /api/comments/ | POST | CommentSerializer | Create comment |
 | /api/comments/ | PUT | CommentSerializer | ?id=x -> update comment with id x |
 | /api/comments/ | DELETE | - | ?id=x -> delete comment with id x |
+| /api/replies/ | GET | - | ?id=x -> get replies from comment with id x |
+| /api/replies/ | POST | ReplySerializer | Create comment |
+| /api/replies/ | PUT | ReplySerializer | ?id=x -> update comment with id x |
+| /api/replies/ | DELETE | - | ?id=x -> delete reply with id x |
 | /api/offer/favs/ | GET | - | ?id=x -> get favourite offers from user with id x |
 | /api/offer/favs/ | POST | { "offer_id": "int", "user_id": "int" } | Add offer to user's favorites |
 | /api/offer/favs/ | DELETE| { "offer_id": "int", "user_id": "int" } | Remove offer from user's favorites |

@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
+from django.core.exceptions import ValidationError
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
@@ -73,5 +74,17 @@ class Comment(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.IntegerField()
+    time = models.TimeField(auto_now=datetime.now())
+    text = models.TextField()
+
+
+class Reply(models.Model):
+    id = models.AutoField(primary_key=True)
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+    # author is a user or a company
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    if user is None and company is None:
+        raise ValidationError("Reply must have an author")
     time = models.TimeField(auto_now=datetime.now())
     text = models.TextField()
