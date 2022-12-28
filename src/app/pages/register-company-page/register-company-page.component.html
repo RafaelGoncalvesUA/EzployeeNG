@@ -1,0 +1,61 @@
+<div class="container" style="margin-top: 80px; margin-bottom: 150px;">
+
+    <div class="card-container">
+        <div class="card card-form">
+    
+            <div style="text-align: center; margin: 35px 0 10px 0;">
+                <h1 class="card-title">Criar conta</h1>
+            </div>
+    
+            <div class="card-body py-5 px-md-5">
+
+                <!-- Name -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Nome</p>
+                    <input #name type="text" name="nome" class="form-control" required>
+                </div>
+
+                <!-- Email -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Email</p>
+                    <input #email type="email" name="email" class="form-control" required>
+                </div>
+                
+                <!-- Password -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Password</p>
+                    <input #password type="password" name="password" class="form-control" required>
+                </div>
+
+                <!-- Location -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Location</p>
+                    <input #location type="text" name="location" class="form-control" required>
+                </div>
+
+                <!-- Description -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Location</p>
+                    <textarea #description type="text" name="description" class="form-control"  cols="3" required></textarea>
+                </div>
+
+                <!-- Logo image -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Logo (todo---------------)</p>
+                    <input #logo type="file" name="logo" class="form-control" required>
+                </div>
+
+                <!-- Errors -->
+                <!-- {% if error_account %}<p style="color: red;">Esta conta já existe</p>{% endif %} -->
+
+                <!-- Submit button -->
+                <div style="text-align: center; margin-top: 50px;">
+                    <button (click)="register(name.value, email.value, password.value, location.value, description.value, logo.value)" class="btn btn-primary btn-block mb-4 register-login-btn">
+                        Criar conta
+                    </button>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+</div>

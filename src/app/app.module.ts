@@ -16,6 +16,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { OfferCardComponent } from './components/offer-card/offer-card.component';
 import { CompanyPageComponent } from './pages/company-page/company-page.component';
 import { OfferPageComponent } from './pages/offer-page/offer-page.component';
+import { RegisterCompanyPageComponent } from './pages/register-company-page/register-company-page.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { OfferPageComponent } from './pages/offer-page/offer-page.component';
     LoginPageComponent,
     OfferCardComponent,
     CompanyPageComponent,
-    OfferPageComponent
+    OfferPageComponent,
+    RegisterCompanyPageComponent
   ],
   imports: [
     BrowserModule,

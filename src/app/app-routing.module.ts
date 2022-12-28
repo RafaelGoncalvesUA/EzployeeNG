@@ -8,6 +8,7 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { CompanyPageComponent } from './pages/company-page/company-page.component';
 import { OfferPageComponent } from './pages/offer-page/offer-page.component';
+import { RegisterCompanyPageComponent } from './pages/register-company-page/register-company-page.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'offers/:id', component: OfferPageComponent},
   {path: 'reserved', component: ReservedAreaPageComponent},
   {path: 'register', component: RegisterPageComponent},
+  {path: 'register_company', component: RegisterCompanyPageComponent},
   {path: 'login', component: LoginPageComponent},
 
 ];
