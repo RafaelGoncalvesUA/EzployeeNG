@@ -62,6 +62,7 @@ class User(models.Model):
     last_name = models.CharField(max_length=20)
     email = models.EmailField()
     password = models.CharField(max_length=200) # hash + salt
+    profile_pic = models.ImageField(upload_to="images/profile_pics", blank=True, null=True) # requires pillow
     fav_companies = models.ManyToManyField(Company, db_table="app_user_fav_companies")
     fav_offers = models.ManyToManyField(Offer, db_table="app_user_fav_offers")
 
