@@ -31,16 +31,14 @@
 
 .remove-comment-btn {
     background-color: rgb(224, 48, 48) !important;
-    margin: 0 5px 0 5px;
+    margin-right: 5px;
 }
 
 .reply-comment-btn {
     background-color: rgb(80, 121, 255) !important;
-    margin: 0 5px 0 5px;
 }
 
 .replies {
-    margin-top: 25px;
     background-color: #fafafb;
     border-radius: 10px;
     padding: 15px 15px 15px 35px;
