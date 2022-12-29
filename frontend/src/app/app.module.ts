@@ -25,6 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommentComponent } from './components/comment/comment.component';
 import { ReplyComponent } from './components/reply/reply.component';
 import { CommentsComponent } from './components/comments/comments.component';
+import { AuthenticationService } from './services/authentication.service';
+import { CommentAreaComponent } from './components/comment-area/comment-area.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { CommentsComponent } from './components/comments/comments.component';
     RegisterCompanyComponent,
     CommentComponent,
     ReplyComponent,
-    CommentsComponent
+    CommentsComponent,
+    CommentAreaComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import { CommentsComponent } from './components/comments/comments.component';
   ],
   providers: [
     ApiRequestsService,
+    AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

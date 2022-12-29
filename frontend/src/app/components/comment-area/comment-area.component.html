@@ -1,0 +1,57 @@
+<div>
+    <form>
+        <div class="row comment-area">
+
+            <div class="col-9" style="margin: 0; padding: 0;">
+                <textarea formControlName="comment" class="textarea-comment" placeholder="Escreva um comentário..."></textarea>
+            </div>
+
+            <div class="col-2">
+                <div>
+                    <input id="rating1" name="rating" type="radio" value="1" class="rating-input" style="margin-right: 5px">
+                    <label for="rating1" class="rating-star">
+                        <i *ngFor="let _ of [].constructor(1)" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
+                    </label>
+                </div>
+
+                <div>
+                    <input id="rating2" name="rating" type="radio" value="2" class="rating-input" style="margin-right: 5px">
+                    <label for="rating2" class="rating-star">
+                        <i *ngFor="let _ of [].constructor(2)" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
+                    </label>
+                </div>
+
+                <div>
+                    <input id="rating3" name="rating" type="radio" value="3" class="rating-input" style="margin-right: 5px">
+                    <label for="rating3" class="rating-star">
+                        <i *ngFor="let _ of [].constructor(3)" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
+                    </label>
+                </div>
+
+                <div>
+                    <input id="rating4" name="rating" type="radio" value="4" class="rating-input" style="margin-right: 5px">
+                    <label for="rating4" class="rating-star">
+                        <i *ngFor="let _ of [].constructor(4)" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
+                    </label>
+                </div>
+
+                <div>
+                    <input id="rating5" name="rating" type="radio" value="5" class="rating-input" style="margin-right: 5px">
+                    <label for="rating5" class="rating-star">
+                        <i *ngFor="let _ of [].constructor(5)" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="col-1" style="margin: 0; padding: 0">
+                <button type="submit" class="btn btn-primary post-comment">
+                    <i class=" fa fa-paper-plane" style="font-size: 16pt;" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+        </div>
+
+        
+    </form>
+    
+</div>

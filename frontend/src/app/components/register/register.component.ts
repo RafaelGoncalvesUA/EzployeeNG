@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
 import { lastValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 
 @Component({
@@ -21,7 +22,10 @@ export class RegisterComponent implements OnInit {
   validPassword: boolean = true;
   profile_pic: boolean = false;
 
-  constructor(private apiRequestsService: ApiRequestsService, private router: Router) { }
+  constructor(
+    private apiRequestsService: ApiRequestsService,
+    private authenticationService: AuthenticationService,
+    private router: Router) { }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -70,7 +74,7 @@ export class RegisterComponent implements OnInit {
         }
       }
 
-      const response$ = this.apiRequestsService.registerUser(formData);
+      const response$ = this.authenticationService.registerUser(formData);
       this.response = await lastValueFrom(response$);
       console.log(this.response);
 

@@ -15,4 +15,9 @@
         </div>
         <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
     </div>
+
+    
+    <app-comment-area *ngIf="ableToComment" [companyId]="companyId" ></app-comment-area>
+    <a *ngIf="!ableToComment" routerLink="/login" class="login-link">Iniciar sessão para comentar</a>
+
 </div>

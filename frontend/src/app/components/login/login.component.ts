@@ -4,6 +4,7 @@ import { ApiRequestsService } from 'src/app/services/api-requests.service';
 import { lastValueFrom } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,10 @@ export class LoginComponent implements OnInit {
   validEmail: boolean = true;
   validPassword: boolean = true;
   
-  constructor(private apiRequestsService: ApiRequestsService, private router: Router) { }
+  constructor(
+    private apiRequestsService: ApiRequestsService,
+    private authenticationService: AuthenticationService,
+    private router: Router) { }
   
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -38,7 +42,7 @@ export class LoginComponent implements OnInit {
         "password": this.loginForm.value.password
       }
 
-      const response$ = this.apiRequestsService.authenticate(header);
+      const response$ = this.authenticationService.authenticate(header);
       this.response = await lastValueFrom(response$);
 
       //do this in a service???

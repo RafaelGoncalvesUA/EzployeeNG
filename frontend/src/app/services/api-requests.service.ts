@@ -58,25 +58,5 @@ export class ApiRequestsService {
     const url = this.baseUrl + '/account/user?id=' + id;
     return this.http.get(url);
   }
-
-
-
-
-
-
-
-  authenticate(header: any): Observable<any> {
-    const url = this.baseUrl + '/login/';
-    return this.http.post(url, header);
-  }
-
-  registerUser(header: any): Observable<any> {
-    const url = this.baseUrl + '/user/register/';
-    return this.http.post(url, header);
-  }
-
-  registerCompany(header: any): Observable<any> {
-    const url = this.baseUrl + '/company/register/';
-    return this.http.post(url, header);
-  }
+  
 }
