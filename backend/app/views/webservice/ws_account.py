@@ -26,3 +26,14 @@ def put_account(request):
         return Response(status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def get_user_account(request):
+    try:
+        user_id = request.GET['id']
+        user = User.objects.get(id=user_id)
+        serializer = UserGeneralInfoSerializer(user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)

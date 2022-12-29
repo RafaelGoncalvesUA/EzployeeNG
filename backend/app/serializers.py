@@ -15,7 +15,12 @@ class OfferSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'password', 'profile_pic']
+        fields = ['id', 'first_name', 'last_name', 'email', 'password', 'profile_pic']
+
+class UserGeneralInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'email', 'profile_pic']
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:

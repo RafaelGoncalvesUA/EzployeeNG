@@ -20,6 +20,7 @@ urlpatterns = [
     path("api/offer/favs/", ws_offer_favs.ws_offer_favs),
     path("api/company/favs/", ws_company_favs.ws_company_favs),
     path("api/account/", ws_account.put_account),
+    path("api/account/user", ws_account.get_user_account),
     path("api/statistics/", ws_statistics.get_statistics),
 ]
 
