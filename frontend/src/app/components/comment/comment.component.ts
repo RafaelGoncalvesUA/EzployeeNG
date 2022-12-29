@@ -19,7 +19,6 @@ export class CommentComponent implements OnInit {
   user: User = null;
   replies: Reply[];
   userPic: any;
-  isImageLoading: boolean = false;
   replyBox: boolean = false;
   ableToReply: boolean = false;
   ableToDelete: boolean = false;
@@ -74,6 +73,7 @@ export class CommentComponent implements OnInit {
 
   reload() {
     this.getReplies();
+    this.replyBox = false;
   }
 
   deleteComment() {
