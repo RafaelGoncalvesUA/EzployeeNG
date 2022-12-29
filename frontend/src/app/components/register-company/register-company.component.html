@@ -6,52 +6,56 @@
         </div>
 
         <div class="card-body py-5 px-md-5">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-            <!-- Name -->
-            <div class="form-outline mb-4">
-                <p style="margin: 0">Nome</p>
-                <input #name type="text" name="nome" class="form-control" required>
-            </div>
+                <!-- Name -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Nome</p>
+                    <input formControlName="nome" type="text" name="nome" class="form-control">
+                </div>
+    
+                <!-- Email -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Email</p>
+                    <input formControlName="email" type="email" name="email" class="form-control">
+                </div>
+                
+                <!-- Password -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Password</p>
+                    <input formControlName="password" type="password" name="password" class="form-control">
+                </div>
+    
+                <!-- Location -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Localização</p>
+                    <input formControlName="localizacao" type="text" name="location" class="form-control">
+                </div>
+    
+                <!-- Description -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Descrição</p>
+                    <textarea formControlName="descricao" type="text" name="description" class="form-control"  cols="3"></textarea>
+                </div>
+    
+                <!-- Logo image -->
+                <div class="form-outline mb-4">
+                    <p style="margin: 0">Logo</p>
+                    <input (change)="onChange($event)" type="file" name="logo" class="form-control" required>
+                </div>
+    
+                <!-- Errors -->
+                <!-- {% if error_account %}<p style="color: red;">Esta conta já existe</p>{% endif %} -->
+    
+                <!-- Submit button -->
+                <div style="text-align: center; margin-top: 50px;">
+                    <button type="submit" class="btn btn-primary btn-block mb-4 register-login-btn">
+                        Criar conta
+                    </button>
+                </div>
+            </form>
 
-            <!-- Email -->
-            <div class="form-outline mb-4">
-                <p style="margin: 0">Email</p>
-                <input #email type="email" name="email" class="form-control" required>
-            </div>
-            
-            <!-- Password -->
-            <div class="form-outline mb-4">
-                <p style="margin: 0">Password</p>
-                <input #password type="password" name="password" class="form-control" required>
-            </div>
 
-            <!-- Location -->
-            <div class="form-outline mb-4">
-                <p style="margin: 0">Location</p>
-                <input #location type="text" name="location" class="form-control" required>
-            </div>
-
-            <!-- Description -->
-            <div class="form-outline mb-4">
-                <p style="margin: 0">Location</p>
-                <textarea #description type="text" name="description" class="form-control"  cols="3" required></textarea>
-            </div>
-
-            <!-- Logo image -->
-            <div class="form-outline mb-4">
-                <p style="margin: 0">Logo (todo---------------)</p>
-                <input #logo type="file" name="logo" class="form-control" required>
-            </div>
-
-            <!-- Errors -->
-            <!-- {% if error_account %}<p style="color: red;">Esta conta já existe</p>{% endif %} -->
-
-            <!-- Submit button -->
-            <div style="text-align: center; margin-top: 50px;">
-                <button (click)="register(name.value, email.value, password.value, location.value, description.value, logo.value)" class="btn btn-primary btn-block mb-4 register-login-btn">
-                    Criar conta
-                </button>
-            </div>
 
         </div>
     </div>

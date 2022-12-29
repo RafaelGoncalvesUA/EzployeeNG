@@ -8,27 +8,28 @@
 
             <div class="card-body py-5 px-md-5">
 
-                
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                     <!-- Email -->
                     <div class="form-outline mb-4">
                         <p style="margin: 0">Email</p>
-                        <input #email type="email" name="email" class="form-control" required>
+                        <input formControlName="email" type="email" name="email" class="form-control">
+                        <span *ngIf="!validEmail" style="color: rgb(187, 0, 0);">Email inválido</span>
                     </div>
                     
                     <!-- Password -->
                     <div class="form-outline mb-4">
                         <p style="margin: 0">Password</p>
-                        <input #password type="password" name="password" class="form-control" required>
+                        <input formControlName="password" type="password" name="password" class="form-control">
+                        <span *ngIf="!validPassword" style="color: rgb(187, 0, 0);">Password inválida</span>
                     </div>
     
                     <!-- Submit button -->
                     <div style="text-align: center; margin-top: 50px;">
-                        <button (click)="login(email.value, password.value)" class="btn btn-primary btn-block mb-4 register-login-btn">
+                        <button type="submit" class="btn btn-primary btn-block mb-4 register-login-btn">
                             Login
                         </button>
                     </div>
-                
-
+                </form>
 
                 <div style="text-align: center; margin-top: 20px">
                     <a style="color: blueviolet;" routerLink="/register">Ainda não tem conta? Criar conta agora</a>

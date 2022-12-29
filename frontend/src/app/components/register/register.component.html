@@ -8,42 +8,49 @@
 
             <div class="card-body py-5 px-md-5">
 
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                            <p style="margin: 0">Nome</p>
-                            <input #fname type="text" name="nome" class="form-control" required>
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <p style="margin: 0">Nome</p>
+                                <input formControlName="nome" type="text" name="nome" class="form-control">
+                                <span *ngIf="!validNome" style="color: rgb(187, 0, 0);">Nome inválido</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <p style="margin: 0">Apelido</p>
+                                <input formControlName="apelido" type="text" name="apelido" class="form-control">
+                                <span *ngIf="!validApelido" style="color: rgb(187, 0, 0);">Apelido inválido</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                            <p style="margin: 0">Apelido</p>
-                            <input #lname type="text" name="apelido" class="form-control" required>
-                        </div>
+    
+                    <!-- Email -->
+                    <div class="form-outline mb-4">
+                        <p style="margin: 0">Email</p>
+                        <input formControlName="email" type="email" name="email" class="form-control">
+                        <span *ngIf="!validEmail" style="color: rgb(187, 0, 0);">Email inválido</span>
                     </div>
-                </div>
-
-                <!-- Email -->
-                <div class="form-outline mb-4">
-                    <p style="margin: 0">Email</p>
-                    <input #email type="email" name="email" class="form-control" required>
-                </div>
-                
-                <!-- Password -->
-                <div class="form-outline mb-4">
-                    <p style="margin: 0">Password</p>
-                    <input #password type="password" name="password" class="form-control" required>
-                </div>
-
+                    
+                    <!-- Password -->
+                    <div class="form-outline mb-4">
+                        <p style="margin: 0">Password</p>
+                        <input formControlName="password" type="password" name="password" class="form-control">
+                        <span *ngIf="!validPassword" style="color: rgb(187, 0, 0);">Password inválida</span>
+                    </div>
+    
                     <!-- Errors -->
                     <!-- {% if error_account %}<p style="color: red;">Esta conta já existe</p>{% endif %} -->
-
+    
                     <!-- Submit button -->
                     <div style="text-align: center; margin-top: 50px;">
-                        <button (click)="register(fname.value, lname.value, email.value, password.value)" class="btn btn-primary btn-block mb-4 register-login-btn">
+                        <button type="submit" class="btn btn-primary btn-block mb-4 register-login-btn">
                             Criar conta
                         </button>
                     </div>
+                </form>
+
 
                 
                 <div style="text-align: center; margin-top: 20px">

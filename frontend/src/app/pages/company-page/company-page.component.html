@@ -1,4 +1,12 @@
-<div class="container" style="margin-top: 80px; margin-bottom: 150px;">
+<!-- Loading -->
+<div *ngIf="company == undefined" class="text-center" style="margin-top: 50px;">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+
+<div *ngIf="company != undefined" class="container" style="margin-top: 80px; margin-bottom: 150px;">    
     <h4>Informações da Empresa</h4>
 
     <div class="row" style="margin-top: 20px;">
@@ -9,32 +17,32 @@
                 <tbody>
                     <tr>
                         <th scope="row" class="table-row">Company ID</th>
-                        <td class="td-table">{{company?.id}}</td>
+                        <td class="td-table">{{company.id}}</td>
                     </tr>
 
                     <tr>
                         <th scope="row" class="table-row">Name</th>
-                        <td class="td-table">{{company?.name}}</td>
+                        <td class="td-table">{{company.name}}</td>
                     </tr>
 
                     <tr>
                         <th scope="row" class="table-row">Email</th>
-                        <td class="td-table">{{company?.email}}</td>
+                        <td class="td-table">{{company.email}}</td>
                     </tr>
 
                     <tr>
                         <th scope="row" class="table-row">Localização</th>
-                        <td class="td-table">{{company?.location}}</td>
+                        <td class="td-table">{{company.location}}</td>
                     </tr>
 
                     <tr>
                         <th scope="row" class="table-row">Classificação média</th>
-                        <td class="td-table">{{company?.avg_rating}}</td>
+                        <td class="td-table">{{company.avg_rating}}</td>
                     </tr>
 
                     <tr>
                         <th scope="row" class="table-row">Nº de classificações</th>
-                        <td class="td-table">{{company?.num_ratings}}</td>
+                        <td class="td-table">{{company.num_ratings}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -42,7 +50,7 @@
             <div style="margin-top: 30px; padding: 5px 5px 5px 5px;">
                 <p style="margin-bottom: 5px;">Description</p>
                 <div class="description">
-                    <p>{{company?.description}}</p>
+                    <p>{{company.description}}</p>
                 </div>
             </div>
         </div>

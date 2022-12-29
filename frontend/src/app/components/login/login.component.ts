@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
 import { lastValueFrom } from 'rxjs';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,17 +14,47 @@ import { lastValueFrom } from 'rxjs';
 export class LoginComponent implements OnInit {
 
   response: any;
+  loginForm: FormGroup;
+  validEmail: boolean = true;
+  validPassword: boolean = true;
   
-  constructor(private apiRequestsService: ApiRequestsService) { }
+  constructor(private apiRequestsService: ApiRequestsService, private router: Router) { }
   
   ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required)
+    });
   }
 
-  async login(email: string, password: string) {
-    const response$ = this.apiRequestsService.authenticate(email, password);
-    this.response = await lastValueFrom(response$);
-    sessionStorage.setItem('token', this.response.token);
-    sessionStorage.setItem('user', this.response.user);
+  async onSubmit() {
+    this.validEmail = this.loginForm.controls['email'].valid;
+    this.validPassword = this.loginForm.controls['password'].valid;
+
+    if (this.loginForm.valid) {
+
+      let header = {
+        "email": this.loginForm.value.email,
+        "password": this.loginForm.value.password
+      }
+
+      const response$ = this.apiRequestsService.authenticate(header);
+      this.response = await lastValueFrom(response$);
+
+      //do this in a service???
+      sessionStorage.setItem('email', this.response.email);
+      sessionStorage.setItem('type', this.response.type);
+      sessionStorage.setItem('token', this.response.token);
+
+      if (this.response.type == 'company')
+        sessionStorage.setItem('name', this.response.name);
+      else {
+        sessionStorage.setItem('first_name', this.response.first_name);
+        sessionStorage.setItem('last_name', this.response.last_name);
+      }
+      
+      this.router.navigate(['/']);
+    }
   }
 
 }

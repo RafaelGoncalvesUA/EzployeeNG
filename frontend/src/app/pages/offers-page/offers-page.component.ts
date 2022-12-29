@@ -8,8 +8,6 @@ import { ApiRequestsService } from 'src/app/services/api-requests.service';
   templateUrl: './offers-page.component.html',
   styleUrls: ['./offers-page.component.css']
 })
-
-
 export class OffersPageComponent implements OnInit {
 
   offers: Offer[];

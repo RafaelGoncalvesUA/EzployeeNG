@@ -14,14 +14,14 @@ import { OnInit } from '@angular/core';
 
 export class CompanyCardComponent implements OnInit {
 
-  @Input() company: Company | undefined;
+  @Input() company: Company;
   logoImage: any;
   isImageLoading: boolean = true;
 
   constructor(private apiRequestService : ApiRequestsService) {}
 
   ngOnInit() {
-    if (this.company?.logo != null)
+    if (this.company.logo != null)
       this.getImageFromService();
     else
       this.logoImage = "assets/images/default_image.png";
@@ -41,9 +41,9 @@ export class CompanyCardComponent implements OnInit {
 
   
   getImageFromService() {
-    if (this.company?.logo != null) {
+    if (this.company.logo != null) {
       this.isImageLoading = true;
-      this.apiRequestService.getImage(this.company?.logo).subscribe(data => {
+      this.apiRequestService.getImage(this.company.logo).subscribe(data => {
         this.createImageFromBlob(data);
         this.isImageLoading = false;
       }, error => {

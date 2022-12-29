@@ -44,8 +44,18 @@ export class ApiRequestsService {
     return this.http.get(url, { responseType: 'blob' });
   }
 
-  authenticate(email: string, password: string): Observable<any> {
+  authenticate(header: any): Observable<any> {
     const url = this.baseUrl + '/login/';
-    return this.http.post(url, { email, password });
+    return this.http.post(url, header);
+  }
+
+  registerUser(header: any): Observable<any> {
+    const url = this.baseUrl + '/user/register/';
+    return this.http.post(url, header);
+  }
+
+  registerCompany(header: any): Observable<any> {
+    const url = this.baseUrl + '/company/register/';
+    return this.http.post(url, header);
   }
 }

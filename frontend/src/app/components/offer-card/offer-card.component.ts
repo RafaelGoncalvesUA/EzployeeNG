@@ -13,7 +13,7 @@ import { ApiRequestsService } from 'src/app/services/api-requests.service';
 
 export class OfferCardComponent implements OnInit {
 
-  @Input() offer: Offer | undefined;
+  @Input() offer: Offer;
 
   constructor(private apiRequestService : ApiRequestsService) {}
 

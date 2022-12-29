@@ -10,31 +10,34 @@ import { lastValueFrom } from 'rxjs';
   templateUrl: './company-page.component.html',
   styleUrls: ['./company-page.component.css']
 })
-
-
 export class CompanyPageComponent implements OnInit {
-  companyId: number | undefined;
-  company: Company | undefined;
+  companyId: number;
+  company: Company;
   logoImage: any;
   isImageLoading: boolean = false;
 
-  constructor(private route: ActivatedRoute, private apiRequestService : ApiRequestsService) {}
+  constructor(private route: ActivatedRoute, private apiRequestService : ApiRequestsService) {
 
-   ngOnInit(): void {
-    this.companyId = this.route.snapshot.paramMap.get('id') != null ? parseInt(this.route.snapshot.paramMap.get('id')!) : undefined;
+  }
+
+  ngOnInit(): void {
     this.getCompanyById();
   }
 
 
   //async para esperar pelo ultimo valor do observable
   async getCompanyById() {
-    const aux$ = this.apiRequestService.getCompanyById(this.companyId!);
-    this.company = await lastValueFrom(aux$);
+    this.companyId = +this.route.snapshot.paramMap.get('id');
 
-    if (this.company?.logo != null)
-      this.getImageFromService();
-    else
-      this.logoImage = "assets/images/default_image.png";
+    if (this.companyId != undefined) {
+      const aux$ = this.apiRequestService.getCompanyById(this.companyId);
+      this.company = await lastValueFrom(aux$);
+  
+      if (this.company.logo != null)
+        this.getImageFromService();
+      else
+        this.logoImage = "assets/images/default_image.png";
+    }
   }
 
 
@@ -51,9 +54,9 @@ export class CompanyPageComponent implements OnInit {
 
   
   getImageFromService() {
-    if (this.company?.logo != null) {
+    if (this.company.logo != null) {
       this.isImageLoading = true;
-      this.apiRequestService.getImage(this.company?.logo).subscribe(data => {
+      this.apiRequestService.getImage(this.company.logo).subscribe(data => {
         this.createImageFromBlob(data);
         this.isImageLoading = false;
       }, error => {
@@ -62,6 +65,5 @@ export class CompanyPageComponent implements OnInit {
       });
     }
   }
-
 
 }

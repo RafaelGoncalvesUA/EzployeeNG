@@ -20,7 +20,7 @@ export class TokenInterceptorService implements HttpInterceptor {
         },
       });
     }
-    console.log(request);
+    // console.log(request);
     return next.handle(request).pipe(
       catchError((err) => {
         if (err.status === 401) {
