@@ -20,7 +20,17 @@
             </button> -->
         </div>
 
-        <app-reply *ngFor="let reply of replies" [reply]="reply"></app-reply>
+        <!-- Loading -->
+        <div *ngIf="replies == undefined" class="text-center" style="margin-top: 50px;">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
+        <div class="replies" *ngIf="replies != undefined && replies.length > 0">
+            <app-reply *ngFor="let reply of replies" [reply]="reply"></app-reply>
+        </div>
+
 
     </div>
 </div>
