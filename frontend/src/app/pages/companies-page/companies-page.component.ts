@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
 import { OnInit } from '@angular/core';
 import { Company } from 'src/app/classes/Company';
+import { lastValueFrom } from 'rxjs';
+
+declare var $: any;
 
 @Component({
   selector: 'app-companies-page',
@@ -14,8 +17,17 @@ export class CompaniesPageComponent implements OnInit {
   
   constructor(private apiRequestsService: ApiRequestsService) { }
 
-  ngOnInit() {
-    this.apiRequestsService.getCompanies().subscribe(companies => this.companies = companies);
+  async ngOnInit() {  
+    const response$ = this.apiRequestsService.getCompanies()
+    this.companies = await lastValueFrom(response$);
+    let names = this.companies.map(company => company.name);
+    names.sort();
+    $('#name').autocomplete({
+      source: function(request, response) {
+        let results = $.ui.autocomplete.filter(names, request.term);
+        response(results.slice(0, 10));
+      }
+    });
   }
 
   filterCompanies(name: string, rating: string, order: string) {
