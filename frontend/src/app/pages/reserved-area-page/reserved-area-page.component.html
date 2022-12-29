@@ -1,1 +1,172 @@
-<p>reserved-area-page works!</p>
+<div 
+    style="margin-top: 20px; margin-bottom: 20px;"
+    class="container"
+>
+
+<ng-container *ngIf="type === undefined">
+    <div>
+        <h1>Redirecting...</h1>
+    </div>
+  </ng-container>
+
+<ng-container *ngIf="type === 'user'">
+    <h1 style="text-align: center">Área Reservada</h1>
+    <hr/>
+
+    <div style="margin-bottom: 60px; margin-top: 50px;">
+    <h4 style="text-align: center">Dados pessoais</h4>
+
+
+    <div class="row" style="margin-top: 30px;">
+        <!-- Table with user info  -->
+        <div class="col-2"></div>
+        <div class="col-8">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th scope="row" class="table-row">User ID</th>
+                    <td class="td-table">{{user.id}}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Nome</th>
+                    <td class="td-table">{{user.first_name}}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Apelido</th>
+                    <td class="td-table">{{user.last_name}}</td>
+                </tr>
+
+                <tr>
+                    <th scope="row" class="table-row">Email</th>
+                    <td class="td-table">{{user.email}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+
+    <!-- Other operations -->
+    <div style="margin-top: 30px;">
+        <h4 style="text-align: center; margin-bottom: 30px;">Outras operações</h4>
+        <div class="row align-items-start" style="margin-top: 20px;">
+            <div class="col-3"></div>
+            <div class="col-3">
+                <button (click)="edit()" class="option" style="background-color: rgb(137, 174, 218);">
+                    <p>Alterar dados pessoais</p>
+                </button>
+            </div>
+
+            <div (click)="favs()" class="col-3">
+                <button class="option" style="background-color: rgba(63, 162, 130);">
+                    <p>Os meus favoritos</p>
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="type === 'company'">
+    <h1 style="text-align: center">Área Reservada</h1>
+    <hr/>
+
+    <div style="margin-bottom: 60px; margin-top: 50px;">
+        <h4 style="text-align: center">Dados da empresa</h4>
+
+        <!-- Company account info -->
+
+    <div class="row" style="margin-top: 20px;">
+        <!-- Table with company info  -->
+        <div class="col-8">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row" class="table-row">Company ID</th>
+                        <td class="td-table">{{company.id}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="table-row">Name</th>
+                        <td class="td-table">{{company.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="table-row">Email</th>
+                        <td class="td-table">{{company.email}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="table-row">Localização</th>
+                        <td class="td-table">{{company.location}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="table-row">Classificação média</th>
+                        <td class="td-table">{{company.avg_rating}}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" class="table-row">Nº de classificações</th>
+                        <td class="td-table">{{company.num_ratings}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 30px; padding: 5px 5px 5px 5px;">
+                <p style="margin-bottom: 5px;">Description</p>
+                <div class="description">
+                    <p>{{company.description}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Company logo  -->
+        <div class="col-4">
+            <div class="logo-div"></div>
+            <ng-container *ngIf="company.logo">
+                <div class="logo-div">
+                    <!-- METER O LOGO -->
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+
+    </div>
+
+    <!-- Other operations -->
+    <div >
+        <h4 style="text-align: center; margin-bottom: 30px;">Outras operações</h4>
+        <div class="row align-items-start" style="margin-top: 20px;">
+
+            <div class="col-3">
+                <button (click)="edit()" class="option" style="background-color: rgb(137, 174, 218);">
+                    <p>Alterar dados da empresa</p>
+                </button>
+            </div>
+
+            <div class="col-3">
+                <button (click)="add_offer()" class="option" style="background-color: rgb(204, 161, 193);">
+                    <p>Criar nova oferta</p>
+                </button>
+            </div>
+
+            <div class="col-3">
+                <button (click)="offers()" class="option" style="background-color: rgba(241, 159, 139);">
+                    <p>As minhas ofertas</p>
+                </button>
+            </div>
+
+            <div (click)="comments()" class="col-3">
+                <button class="option" style="background-color: rgba(63, 162, 130);">
+                    <p>Comentários de utilizadores</p>
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+</div>

@@ -22,6 +22,11 @@ class UserGeneralInfoSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'first_name', 'last_name', 'email', 'profile_pic']
 
+class CompanyGeneralInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Company
+        fields = ['id', 'name', 'email', 'location', 'avg_rating', 'num_ratings', 'logo' ]
+
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment

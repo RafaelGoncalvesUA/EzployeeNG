@@ -21,11 +21,14 @@
 | /api/replies/ | POST | ReplySerializer | Create comment |
 | /api/replies/ | PUT | ReplySerializer | ?id=x -> update comment with id x |
 | /api/replies/ | DELETE | - | ?id=x -> delete reply with id x |
-| /api/offer/favs/ | GET | - | ?id=x -> get favourite offers from user with id x |
-| /api/offer/favs/ | POST | { "offer_id": "int", "user_id": "int" } | Add offer to user's favorites |
-| /api/offer/favs/ | DELETE| { "offer_id": "int", "user_id": "int" } | Remove offer from user's favorites |
-| /api/company/favs/ | GET | - | ?id=x -> gets favourite companies from user with id x |
-| /api/company/favs/ | POST | { "company_id": "int", "user_id": "int" } | Add company to user's favorites |
-| /api/company/favs/ | DELETE| { "company_id": "int", "user_id": "int" } | Remove company from user's favorites |
-| /api/account/ | PUT | UserSerializer | update user account |
+| /api/favs/offers/ | GET | - | ?id=x -> get favourite offers from user with id x |
+| /api/favs/offers/ | POST | { "offer_id": "int", "user_id": "int" } | Add offer to user's favorites |
+| /api/favs/offers/ | DELETE| { "offer_id": "int", "user_id": "int" } | Remove offer from user's favorites |
+| /api/favs/companies/ | GET | - | ?id=x -> gets favourite companies from user with id x |
+| /api/favs/companies/ | POST | { "company_id": "int", "user_id": "int" } | Add company to user's favorites |
+| /api/favs/companies/ | DELETE| { "company_id": "int", "user_id": "int" } | Remove company from user's favorites |
+| /api/user/account/ | GET | - | get user info ?id=x -> get user with id x |
+| /api/user/account/ | PUT | UserSerializer | ?id=x -> update user with id x |
+| /api/company/account/ | GET | - | get company info ?id=x -> get company with id x |
+| /api//companyaccount/ | PUT | CompanySerializer | ?id=x -> update company with id x |
 | /api/statistics/ | GET | - | get statistics |

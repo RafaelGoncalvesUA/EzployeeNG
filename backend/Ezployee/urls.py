@@ -13,14 +13,14 @@ urlpatterns = [
     path("api/login/", ws_auth.login),
     path("api/user/register/", ws_auth.register_user),
     path("api/company/register/", ws_auth.register_company),
+    path("api/user/account/", ws_account.ws_user_account),
+    path("api/company/account/", ws_account.ws_company_account),
     path("api/offers/", ws_offers.ws_offers),
     path("api/companies/", ws_companies.ws_companies),
     path("api/comments/", ws_comments.ws_comments),
     path("api/replies/", ws_replies.ws_replies),
-    path("api/offer/favs/", ws_offer_favs.ws_offer_favs),
-    path("api/company/favs/", ws_company_favs.ws_company_favs),
-    path("api/account/", ws_account.put_account),
-    path("api/account/user", ws_account.get_user_account),
+    path("api/favs/offers/", ws_offer_favs.ws_offer_favs),
+    path("api/favs/companies/", ws_company_favs.ws_company_favs),
     path("api/statistics/", ws_statistics.get_statistics),
 ]
 
