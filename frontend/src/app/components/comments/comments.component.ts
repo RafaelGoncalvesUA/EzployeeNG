@@ -2,9 +2,7 @@ import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
 import { Comment } from 'src/app/classes/Comment';
-import { FormControl, FormGroup } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { CommentsService } from 'src/app/services/comments.service';
 
 @Component({
   selector: 'app-comments',
@@ -20,7 +18,6 @@ export class CommentsComponent implements OnInit {
   constructor(
     private apiRequestService : ApiRequestsService,
     private authService: AuthenticationService,
-    private commentsService: CommentsService
     ) { }
 
   ngOnInit(): void {
@@ -37,6 +34,10 @@ export class CommentsComponent implements OnInit {
     this.apiRequestService.getCommentsByCompany(this.companyId).subscribe(data => {
       this.comments = data;
     });
+  }
+
+  reload() {
+    this.getComments();
   }
 
 }

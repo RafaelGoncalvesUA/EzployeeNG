@@ -17,4 +17,9 @@ export class CommentsService {
     return this.http.post(url, header);
   }
 
+  postReply(header: any): Observable<any> {
+    const url = this.baseUrl + '/replies/';
+    return this.http.post(url, header);
+  }
+
 }

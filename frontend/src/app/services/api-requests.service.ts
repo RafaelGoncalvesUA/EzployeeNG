@@ -55,7 +55,7 @@ export class ApiRequestsService {
   }
 
   getUserById(id: number): Observable<any> {
-    const url = this.baseUrl + '/account/user?id=' + id;
+    const url = this.baseUrl + '/user/account?id=' + id;
     return this.http.get(url);
   }
   

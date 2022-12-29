@@ -21,10 +21,18 @@
             </div>
             <p style="margin-bottom: 5px;">{{comment.text}}</p>
             
-            <!-- <button class="btn btn-primary btn-block mb-4 remove-comment-btn">
+            <button class="btn btn-primary btn-block mb-4 remove-comment-btn">
                 <i class="fa fa-trash" aria-hidden="true"></i>
-                Remover comentário
-            </button> -->
+            </button>
+
+            <button (click)="showReplyBox()" class="btn btn-primary btn-block mb-4 reply-comment-btn">
+                <i class="fa fa-reply" aria-hidden="true"></i>
+            </button>
+
+            <div *ngIf="replyBox">
+                <app-reply-area [comment]="comment" (replyPosted)="reload()"></app-reply-area>
+            </div>
+            
         </div>
 
         <!-- Loading -->

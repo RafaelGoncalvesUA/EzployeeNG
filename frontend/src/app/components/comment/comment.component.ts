@@ -18,6 +18,7 @@ export class CommentComponent implements OnInit {
   replies: Reply[];
   userPic: any;
   isImageLoading: boolean = false;
+  replyBox: boolean = false;
   
   constructor(private apiRequestService : ApiRequestsService) { }
 
@@ -48,6 +49,14 @@ export class CommentComponent implements OnInit {
     
     if (image)
        reader.readAsDataURL(image);
+  }
+
+  showReplyBox() {
+    this.replyBox = !this.replyBox;
+  }
+
+  reload() {
+    this.getReplies();
   }
 
 }

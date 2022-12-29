@@ -17,7 +17,7 @@
     </div>
 
     
-    <app-comment-area *ngIf="ableToComment" [companyId]="companyId" ></app-comment-area>
+    <app-comment-area *ngIf="ableToComment" [companyId]="companyId" (commentPosted)="reload()"></app-comment-area>
     <a *ngIf="!ableToComment" routerLink="/login" class="login-link">Iniciar sessão para comentar</a>
 
 </div>
