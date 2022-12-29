@@ -30,5 +30,5 @@
 | /api/user/account/ | GET | - | get user info ?id=x -> get user with id x |
 | /api/user/account/ | PUT | UserSerializer | ?id=x -> update user with id x |
 | /api/company/account/ | GET | - | get company info ?id=x -> get company with id x |
-| /api//companyaccount/ | PUT | CompanySerializer | ?id=x -> update company with id x |
+| /api//company/account/ | PUT | CompanySerializer | ?id=x -> update company with id x |
 | /api/statistics/ | GET | - | get statistics |
