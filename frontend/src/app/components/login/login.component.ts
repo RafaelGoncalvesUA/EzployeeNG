@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
       this.response = await lastValueFrom(response$);
 
       //do this in a service???
+      sessionStorage.setItem('id', this.response.id);
       sessionStorage.setItem('email', this.response.email);
       sessionStorage.setItem('type', this.response.type);
       sessionStorage.setItem('token', this.response.token);
