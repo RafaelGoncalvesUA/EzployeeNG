@@ -22,6 +22,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { RegisterCompanyComponent } from './components/register-company/register-company.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommentComponent } from './components/comment/comment.component';
+import { ReplyComponent } from './components/reply/reply.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegisterCompanyPageComponent,
     LoginComponent,
     RegisterComponent,
-    RegisterCompanyComponent
+    RegisterCompanyComponent,
+    CommentComponent,
+    ReplyComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,

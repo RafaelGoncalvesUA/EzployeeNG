@@ -1,0 +1,32 @@
+.comment {
+    margin-bottom: 50px;
+}
+
+.profile-img-comment {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: rgb(80, 121, 255);
+}
+
+.comment-content {
+    margin-left: 10px;
+    word-wrap: break-word;
+}
+
+.author-name {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.comment-date {
+    font-size: 0.8em;
+    color: #999;
+    margin-left: 10px;
+}
+
+.remove-comment-btn {
+    background-color: rgb(224, 48, 48) !important;
+}
+

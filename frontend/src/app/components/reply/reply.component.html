@@ -1,0 +1,17 @@
+<div class="replies">
+    <div class="row reply">
+
+        <div [ngStyle]="{'background-image': 'url(' + user.profile_pic + ')'}" class="col-4 profile-img-reply" ></div>
+
+        <div class="col-8 reply-content">
+            <div>
+                <span class="author-name-reply">{{user.first_name + " " + user.last_name}}</span>
+                <span class="reply-date">{{reply.time}}</span>
+            </div>
+
+            <div>
+                <p style="margin-bottom: 5px;">{{reply.text}}</p>
+            </div>
+        </div>
+    </div>
+</div>

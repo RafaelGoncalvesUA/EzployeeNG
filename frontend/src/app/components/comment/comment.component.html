@@ -1,0 +1,26 @@
+<div class="row comment">
+
+    <div [ngStyle]="{'background-image': 'url(' + user.profile_pic + ')'}" class="col-4 profile-img-comment" ></div>
+    
+    <div class="col-8 comment-content">
+        <div>
+            <span class="author-name">{{user.first_name + " " + user.last_name}}</span>
+            <span class="comment-date">{{comment.time}}</span>
+        </div>
+
+        <div>
+            <div>
+                <i *ngFor="let _ of [].constructor(comment.rating)" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
+            </div>
+            <p style="margin-bottom: 5px;">{{comment.text}}</p>
+            
+            <!-- <button class="btn btn-primary btn-block mb-4 remove-comment-btn">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                Remover comentário
+            </button> -->
+        </div>
+
+        <app-reply *ngFor="let reply of replies" [reply]="reply"></app-reply>
+
+    </div>
+</div>
