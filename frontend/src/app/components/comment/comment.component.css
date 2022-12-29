@@ -29,16 +29,28 @@
     margin-left: 10px;
 }
 
-.remove-comment-btn {
-    background-color: rgb(224, 48, 48) !important;
-    margin-right: 5px;
+.delete-icon {
+    color: red;
+    margin-left: 15px;
+    font-size: 16pt;
 }
 
-.reply-comment-btn {
-    background-color: rgb(80, 121, 255) !important;
+.delete-icon:hover {
+    cursor: pointer;
+}
+
+.reply-icon {
+    color: rgb(80, 121, 255);
+    margin-left: 15px;
+    font-size: 15pt;
+}
+
+.reply-icon:hover {
+    cursor: pointer;
 }
 
 .replies {
+    margin-top: 10px;
     background-color: #fafafb;
     border-radius: 10px;
     padding: 15px 15px 15px 35px;

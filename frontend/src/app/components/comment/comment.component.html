@@ -13,6 +13,8 @@
         <div>
             <span class="author-name">{{user.first_name + " " + user.last_name}}</span>
             <span class="comment-date">{{comment.time}}</span>
+            <i (click)="deleteComment()" *ngIf="ableToDelete" class="fa fa-trash delete-icon" aria-hidden="true"></i>
+            <i *ngIf="ableToReply" (click)="showReplyBox()" class="fa fa-reply reply-icon" aria-hidden="true"></i>
         </div>
 
         <div>
@@ -20,14 +22,6 @@
                 <i *ngFor="let _ of [].constructor(comment.rating)" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
             </div>
             <p style="margin-bottom: 5px;">{{comment.text}}</p>
-            
-            <button class="btn btn-primary btn-block mb-4 remove-comment-btn">
-                <i class="fa fa-trash" aria-hidden="true"></i>
-            </button>
-
-            <button (click)="showReplyBox()" class="btn btn-primary btn-block mb-4 reply-comment-btn">
-                <i class="fa fa-reply" aria-hidden="true"></i>
-            </button>
 
             <div *ngIf="replyBox">
                 <app-reply-area [comment]="comment" (replyPosted)="reload()"></app-reply-area>
@@ -43,7 +37,7 @@
         </div>
 
         <div class="replies" *ngIf="replies != undefined && replies.length > 0">
-            <app-reply *ngFor="let reply of replies" [reply]="reply"></app-reply>
+            <app-reply (replyDeleted)="reload()" *ngFor="let reply of replies" [reply]="reply"></app-reply>
         </div>
 
 

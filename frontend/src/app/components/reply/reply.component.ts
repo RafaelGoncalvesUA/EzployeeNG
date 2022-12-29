@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Reply } from 'src/app/classes/Reply';
-import { Input } from '@angular/core';
+import { Input, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/classes/User';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
+import { CommentsService } from 'src/app/services/comments.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-reply',
@@ -13,14 +15,25 @@ import { ApiRequestsService } from 'src/app/services/api-requests.service';
 export class ReplyComponent implements OnInit {
 
   @Input() reply: Reply;
+  @Output() replyDeleted = new EventEmitter<boolean>();
   user: User;
-  isImageLoading: boolean = false;
+  ableToDelete: boolean = false;
   userPic: any;
 
-  constructor(private apiRequestService : ApiRequestsService) { }
+  constructor(private apiRequestService : ApiRequestsService,
+    private authService: AuthenticationService,
+    private commentsService: CommentsService
+    ) { }
 
   ngOnInit(): void {
     this.getUserInfo(this.reply.user);
+
+    //check permissions
+    if (this.reply.company == +this.authService.getUserInfo().id)
+      this.ableToDelete = true;
+    else
+      this.ableToDelete = false;
+
   }
 
   getUserInfo(id: number) {
@@ -49,6 +62,10 @@ export class ReplyComponent implements OnInit {
     if (image) {
        reader.readAsDataURL(image);
     }
+  }
+
+  deleteReply() {
+    this.commentsService.deleteReply(this.reply.id).subscribe(data => this.replyDeleted.emit(true));
   }
 
 }

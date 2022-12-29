@@ -13,11 +13,11 @@
             <h2>{{comments.length}} comentário(s)</h2>
             <hr>
         </div>
-        <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
+        <app-comment (commentDeleted)="reloadAfterDelete()" *ngFor="let comment of comments" [comment]="comment"></app-comment>
     </div>
 
     
     <app-comment-area *ngIf="ableToComment" [companyId]="companyId" (commentPosted)="reload()"></app-comment-area>
-    <a *ngIf="!ableToComment" routerLink="/login" class="login-link">Iniciar sessão para comentar</a>
+    <a *ngIf="!ableToComment" routerLink="/login" class="login-link">Iniciar sessão como utilizador para comentar</a>
 
 </div>

@@ -59,4 +59,8 @@ export class ApiRequestsService {
     return this.http.get(url);
   }
   
+  deleteComment(id: number): Observable<any> {
+    const url = this.baseUrl + '/comments?id=' + id;
+    return this.http.delete(url);
+  }
 }

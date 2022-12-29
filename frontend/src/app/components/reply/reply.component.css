@@ -34,3 +34,12 @@
     background-color: rgb(224, 48, 48) !important;
 }
 
+.delete-icon {
+    color: red;
+    margin-left: 15px;
+    font-size: 15pt;
+}
+
+.delete-icon:hover {
+    cursor: pointer;
+}

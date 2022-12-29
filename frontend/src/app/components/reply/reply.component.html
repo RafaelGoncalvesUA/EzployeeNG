@@ -9,14 +9,16 @@
 
     <div [ngStyle]="{'background-image': 'url(' + userPic+ ')'}" class="col-4 profile-img-reply" ></div>
 
-    <div class="col-8 reply-content">
+    <div class="col-7 reply-content">
         <div>
             <span class="author-name-reply">{{user.first_name + " " + user.last_name}}</span>
             <span class="reply-date">{{reply.time}}</span>
+            <i *ngIf="ableToDelete" (click)="deleteReply()" class="fa fa-trash delete-icon" aria-hidden="true"></i>
         </div>
-
+        
         <div>
             <p style="margin-bottom: 5px;">{{reply.text}}</p>
         </div>
     </div>
+
 </div>

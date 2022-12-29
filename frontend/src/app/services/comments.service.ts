@@ -22,4 +22,9 @@ export class CommentsService {
     return this.http.post(url, header);
   }
 
+  deleteReply(id: number): Observable<any> {
+    const url = this.baseUrl + '/replies/?id=' + id;
+    return this.http.delete(url);
+  }
+
 }

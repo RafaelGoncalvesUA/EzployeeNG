@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Comment } from 'src/app/classes/Comment';
 import { Reply } from 'src/app/classes/Reply';
-import { Input } from '@angular/core';
+import { Input, Output, EventEmitter } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
 import { User } from 'src/app/classes/User';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-comment',
@@ -14,15 +15,31 @@ import { User } from 'src/app/classes/User';
 export class CommentComponent implements OnInit {
 
   @Input() comment: Comment;
+  @Output() commentDeleted = new EventEmitter<boolean>();
   user: User = null;
   replies: Reply[];
   userPic: any;
   isImageLoading: boolean = false;
   replyBox: boolean = false;
+  ableToReply: boolean = false;
+  ableToDelete: boolean = false;
   
-  constructor(private apiRequestService : ApiRequestsService) { }
+  constructor(
+    private apiRequestService : ApiRequestsService,
+    private authService: AuthenticationService,
+    ) { }
 
   ngOnInit(): void {
+
+    //check user permissions
+    if (this.authService.loggedIn()) {
+      if (this.authService.getUserInfo().type != 'company')
+        this.ableToReply = true;
+
+      if (this.authService.getUserInfo().type == 'company' && +this.authService.getUserInfo().id == this.comment.company)
+        this.ableToDelete = true;
+    }
+
     this.getUserInfo(this.comment.user);
     this.getReplies();
   }
@@ -57,6 +74,13 @@ export class CommentComponent implements OnInit {
 
   reload() {
     this.getReplies();
+  }
+
+  deleteComment() {
+    this.apiRequestService.deleteComment(this.comment.id).subscribe();
+    
+    //notify parent
+    this.commentDeleted.emit(true);
   }
 
 }
