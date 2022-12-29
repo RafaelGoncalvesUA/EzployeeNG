@@ -1,7 +1,13 @@
+<!-- Loading -->
+<div *ngIf="user == undefined || userPic == undefined" class="text-center" style="margin-top: 50px;">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>  
 
-<div class="row reply">
+<div *ngIf="user != undefined && userPic != undefined" class="row reply">
 
-    <div [ngStyle]="{'background-image': 'url(' + user.profile_pic + ')'}" class="col-4 profile-img-reply" ></div>
+    <div [ngStyle]="{'background-image': 'url(' + userPic+ ')'}" class="col-4 profile-img-reply" ></div>
 
     <div class="col-8 reply-content">
         <div>

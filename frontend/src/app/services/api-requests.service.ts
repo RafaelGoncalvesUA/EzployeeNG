@@ -54,6 +54,11 @@ export class ApiRequestsService {
     return this.http.get(url);
   }
 
+  getUserById(id: number): Observable<any> {
+    const url = this.baseUrl + '/account/user?id=' + id;
+    return this.http.get(url);
+  }
+
 
 
 

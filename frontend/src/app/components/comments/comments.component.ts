@@ -18,7 +18,7 @@ export class CommentsComponent implements OnInit {
   ngOnInit(): void {
     this.getComments();
   }
-
+  
   getComments() {
     this.apiRequestService.getCommentsByCompany(this.companyId).subscribe(data => {
       this.comments = data;

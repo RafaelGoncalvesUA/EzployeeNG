@@ -39,6 +39,12 @@
                         <input formControlName="password" type="password" name="password" class="form-control">
                         <span *ngIf="!validPassword" style="color: rgb(187, 0, 0);">Password inválida</span>
                     </div>
+
+                    <!-- Profile image -->
+                    <div class="form-outline mb-4">
+                        <p style="margin: 0">Imagem de perfil</p>
+                        <input (change)="onChange($event)" type="file" name="logo" class="form-control" required>
+                    </div>
     
                     <!-- Errors -->
                     <!-- {% if error_account %}<p style="color: red;">Esta conta já existe</p>{% endif %} -->

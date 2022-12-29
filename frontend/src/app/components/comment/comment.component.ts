@@ -14,27 +14,40 @@ import { User } from 'src/app/classes/User';
 export class CommentComponent implements OnInit {
 
   @Input() comment: Comment;
-  user: User;
+  user: User = null;
   replies: Reply[];
+  userPic: any;
+  isImageLoading: boolean = false;
   
   constructor(private apiRequestService : ApiRequestsService) { }
 
   ngOnInit(): void {
-    this.getUser(this.comment.user);
+    this.getUserInfo(this.comment.user);
     this.getReplies();
   }
 
   getReplies() {
-    this.apiRequestService.getRepliesByComment(this.comment.id).subscribe(data => {
-      this.replies = data;
+    this.apiRequestService.getRepliesByComment(this.comment.id).subscribe(data => this.replies = data);
+  }
+
+  getUserInfo(id: number) {
+    this.apiRequestService.getUserById(id).subscribe(data => {
+      this.user = data;
+      
+      if (this.user.profile_pic != null)
+        this.apiRequestService.getImage(this.user.profile_pic).subscribe(data => this.createImageFromBlob(data));
+      else
+        this.userPic = "https://www.w3schools.com/howto/img_avatar.png";
     });
   }
 
-  getUser(id: number) {
-    //TODO: API call to get user by id
-    this.user = {id: 1, first_name: "John", last_name: "Doe", email: "john@gmail.com", profile_pic: "https://www.w3schools.com/howto/img_avatar.png"};
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => this.userPic = reader.result, false);
+    
+    if (image)
+       reader.readAsDataURL(image);
   }
-
-
 
 }

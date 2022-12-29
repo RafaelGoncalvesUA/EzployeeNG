@@ -14,7 +14,6 @@ export class CompanyPageComponent implements OnInit {
   companyId: number;
   company: Company;
   logoImage: any;
-  isImageLoading: boolean = false;
 
   constructor(private route: ActivatedRoute, private apiRequestService : ApiRequestsService) {
 
@@ -34,7 +33,7 @@ export class CompanyPageComponent implements OnInit {
       this.company = await lastValueFrom(aux$);
   
       if (this.company.logo != null)
-        this.getImageFromService();
+        this.apiRequestService.getImage(this.company.logo).subscribe(data => this.createImageFromBlob(data));
       else
         this.logoImage = "assets/images/default_image.png";
     }
@@ -43,27 +42,10 @@ export class CompanyPageComponent implements OnInit {
 
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
-    reader.addEventListener("load", () => {
-       this.logoImage = reader.result;
-    }, false);
+    reader.addEventListener("load", () => this.logoImage = reader.result, false);
  
-    if (image) {
+    if (image)
        reader.readAsDataURL(image);
-    }
-  }
-
-  
-  getImageFromService() {
-    if (this.company.logo != null) {
-      this.isImageLoading = true;
-      this.apiRequestService.getImage(this.company.logo).subscribe(data => {
-        this.createImageFromBlob(data);
-        this.isImageLoading = false;
-      }, error => {
-        this.isImageLoading = false;
-        console.log(error);
-      });
-    }
   }
 
 }
