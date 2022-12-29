@@ -1,5 +1,5 @@
 <div>
-    <form>
+    <form [formGroup]="writeCommentForm" (submit)="onSubmit()">
         <div class="row comment-area">
 
             <div class="col-9" style="margin: 0; padding: 0;">
@@ -8,35 +8,35 @@
 
             <div class="col-2">
                 <div>
-                    <input id="rating1" name="rating" type="radio" value="1" class="rating-input" style="margin-right: 5px">
+                    <input (click)="updateRating(1)" id="rating1" name="rating" type="radio" value="1" class="rating-input" style="margin-right: 5px" checked="checked">
                     <label for="rating1" class="rating-star">
                         <i *ngFor="let _ of [].constructor(1)" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
                     </label>
                 </div>
 
                 <div>
-                    <input id="rating2" name="rating" type="radio" value="2" class="rating-input" style="margin-right: 5px">
+                    <input (click)="updateRating(2)" id="rating2" name="rating" type="radio" value="2" class="rating-input" style="margin-right: 5px">
                     <label for="rating2" class="rating-star">
                         <i *ngFor="let _ of [].constructor(2)" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
                     </label>
                 </div>
 
                 <div>
-                    <input id="rating3" name="rating" type="radio" value="3" class="rating-input" style="margin-right: 5px">
+                    <input (click)="updateRating(3)" id="rating3" name="rating" type="radio" value="3" class="rating-input" style="margin-right: 5px">
                     <label for="rating3" class="rating-star">
                         <i *ngFor="let _ of [].constructor(3)" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
                     </label>
                 </div>
 
                 <div>
-                    <input id="rating4" name="rating" type="radio" value="4" class="rating-input" style="margin-right: 5px">
+                    <input (click)="updateRating(4)" id="rating4" name="rating" type="radio" value="4" class="rating-input" style="margin-right: 5px">
                     <label for="rating4" class="rating-star">
                         <i *ngFor="let _ of [].constructor(4)" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
                     </label>
                 </div>
 
                 <div>
-                    <input id="rating5" name="rating" type="radio" value="5" class="rating-input" style="margin-right: 5px">
+                    <input (click)="updateRating(5)" id="rating5" name="rating" type="radio" value="5" class="rating-input" style="margin-right: 5px">
                     <label for="rating5" class="rating-star">
                         <i *ngFor="let _ of [].constructor(5)" class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
                     </label>
@@ -54,4 +54,8 @@
         
     </form>
     
+</div>
+
+<div *ngIf="!validForm" style="text-align: center;">
+    <p style="color: red; margin-top: 10px">Comentário inválido, verifique todos os campos</p>
 </div>

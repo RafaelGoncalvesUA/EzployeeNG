@@ -3,7 +3,7 @@ import { CommentsService } from 'src/app/services/comments.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
 import { Comment } from 'src/app/classes/Comment';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Input } from '@angular/core';
 
 @Component({
@@ -16,7 +16,8 @@ export class CommentAreaComponent {
   @Input() companyId: number;
   comments: Comment[];
   writeCommentForm: FormGroup;
-  ableToComment: boolean = false;
+  currentRating: number = 1;
+  validForm: boolean = true;
 
   constructor(
     private apiRequestService : ApiRequestsService,
@@ -26,42 +27,33 @@ export class CommentAreaComponent {
 
   ngOnInit(): void {
 
-    //check if current user can comment
-    if (this.authService.loggedIn() && this.authService.getUserInfo().type == 'user')
-      this.ableToComment = true;
-
-    this.getComments();
-
     this.writeCommentForm = new FormGroup({
-      comment: new FormControl('')
+      comment: new FormControl('', Validators.required)
     });
 
-  }
-  
-  getComments() {
-    this.apiRequestService.getCommentsByCompany(this.companyId).subscribe(data => {
-      this.comments = data;
-    });
   }
 
   onSubmit() {
-    let comment = this.writeCommentForm.value.comment;
+    this.validForm = this.writeCommentForm.valid;
 
-    //post comment via api
-    // this.commentsService.postComment({
-    //   id: this.authService.getUserInfo().id,
-    //   company_id: this.companyId,
-    //   comment: comment
-    // });
+    if (this.validForm) {
+      let header = {
+        text: this.writeCommentForm.value.comment,
+        rating: this.currentRating,
+        user: +this.authService.getUserInfo().id,
+        company: this.companyId
+      }
 
+      //post comment via api
+      this.commentsService.postComment(header).subscribe();
 
-    //clean form
-    this.writeCommentForm.reset();
+      //clean form
+      this.writeCommentForm.reset();
+    }
   }
 
   updateRating(rating: number) {
-    console.log(rating);
+    this.currentRating = rating;
   }
-
 
 }

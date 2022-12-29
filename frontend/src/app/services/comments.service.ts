@@ -12,7 +12,7 @@ export class CommentsService {
 
   constructor(private http: HttpClient) {}
 
-  postComment(header): Observable<any> {
+  postComment(header: any): Observable<any> {
     const url = this.baseUrl + '/comments/';
     return this.http.post(url, header);
   }
