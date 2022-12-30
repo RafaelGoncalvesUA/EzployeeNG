@@ -46,7 +46,7 @@ def get_company_account(request):
 
 @api_view(['GET', 'PUT'])
 @authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated | IsGetRequest])
 def ws_user_account(request):
     try:
         if request.method == 'GET':
@@ -59,7 +59,7 @@ def ws_user_account(request):
 
 @api_view(['GET', 'PUT'])
 @authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated | IsGetRequest])
 def ws_company_account(request):
     try:
         if request.method == 'GET':
