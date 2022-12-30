@@ -6,6 +6,7 @@ from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from app.serializers import *
 from app.models import *
+from app.security import *
 
 # @api_view(['GET'])
 # @authentication_classes([TokenAuthentication])
@@ -46,6 +47,8 @@ def delete_comment(request):
 
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated | IsGetRequest])
 def ws_comments(request):
     try:
         if request.method == 'GET':

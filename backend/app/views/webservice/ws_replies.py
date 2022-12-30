@@ -1,11 +1,9 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.decorators import authentication_classes, permission_classes
-from rest_framework.permissions import IsAuthenticated
 from app.serializers import *
 from app.models import *
+from app.security import *
 
 # @api_view(['GET'])
 # @authentication_classes([TokenAuthentication])
@@ -43,6 +41,8 @@ def delete_reply(request):
 
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated | IsGetRequest])
 def ws_replies(request):
     try:
         if request.method == 'GET':

@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from app.serializers import *
 from app.models import *
 from django.db.models.functions import Lower
+from app.security import *
 
 # @api_view(['GET'])
 def get_companies(request):
@@ -65,6 +66,8 @@ def delete_company(request):
 
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated | IsGetRequest])
 def ws_companies(request):
     try:
         if request.method == 'GET':

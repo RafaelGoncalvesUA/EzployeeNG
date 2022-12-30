@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from app.serializers import *
 from app.models import *
+from app.security import *
 
 # @api_view(['GET'])
 def get_company_favs(request):
@@ -29,6 +30,8 @@ def delete_company_fav(request):
 
 
 @api_view(['GET', 'POST', 'DELETE'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def ws_company_favs(request):
     try:
         if request.method == 'GET':

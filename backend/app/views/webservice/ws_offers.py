@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from app.serializers import *
 from app.models import *
 from django.db.models.functions import Lower
+from app.security import *
 
 # @api_view(['GET'])
 def get_offers(request):
@@ -88,6 +89,8 @@ def delete_offer(request):
 
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated | IsGetRequest])
 def ws_offers(request):
     try:
         if request.method == 'GET':

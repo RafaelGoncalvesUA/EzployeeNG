@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from app.serializers import *
 from app.models import *
+from app.security import *
 
 # @api_view(['GET'])
 def get_offer_favs(request):    
@@ -28,6 +29,8 @@ def delete_offer_fav(request):
     return Response(status=status.HTTP_200_OK)
 
 @api_view(['GET', 'POST'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def ws_offer_favs(request):
     try:
         if request.method == 'GET':

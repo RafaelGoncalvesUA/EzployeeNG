@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from app.serializers import *
 from app.models import *
+from app.security import *
 
 # @api_view(['PUT'])
 def put_user_account(request):
@@ -44,6 +45,8 @@ def get_company_account(request):
 
 
 @api_view(['GET', 'PUT'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def ws_user_account(request):
     try:
         if request.method == 'GET':
@@ -55,6 +58,8 @@ def ws_user_account(request):
 
 
 @api_view(['GET', 'PUT'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def ws_company_account(request):
     try:
         if request.method == 'GET':
