@@ -11,8 +11,8 @@ def put_user_account(request):
     user_id = request.GET['id']
     user = User.objects.get(id=user_id)
     serializer = UserSerializer(user, data=request.data)
-    serializer['password'] = make_password(serializer['password'])
     if serializer.is_valid():
+        serializer['password'] = make_password(serializer['password'])
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -23,8 +23,8 @@ def put_company_account(request):
     company_id = request.GET['id']
     company = Company.objects.get(id=company_id)
     serializer = CompanySerializer(company, data=request.data)
-    serializer['password'] = make_password(serializer['password'])
     if serializer.is_valid():
+        serializer['password'] = make_password(serializer['password'])
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
