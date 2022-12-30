@@ -56,9 +56,7 @@
                 </div>
     
                 <div class="col-3">
-                    <button class="option" style="background-color: rgb(204, 161, 193);">
-                        <p>Criar nova oferta</p>
-                    </button>
+                    <app-new-offer [company]="company" (newOfferDone)="reload()"></app-new-offer>
                 </div>
     
                 <div class="col-3">

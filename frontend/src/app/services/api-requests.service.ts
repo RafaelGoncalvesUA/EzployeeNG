@@ -63,5 +63,10 @@ export class ApiRequestsService {
     const url = this.baseUrl + '/company/account?id=' + id;
     return this.http.get(url);
   }
-  
+
+  addOffer(offer): Observable<any> {
+    const url = this.baseUrl + '/offers/';
+    return this.http.post(url, offer);
+  }
+
 }

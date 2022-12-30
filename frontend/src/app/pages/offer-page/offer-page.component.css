@@ -7,13 +7,10 @@
 }
 
 .description {
-    background-color: rgb(243, 243, 243);
-    border-radius: 5px;
-    height: 100px;
-    padding: 10px 10px 10px 10px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(184, 184, 184);
+    padding: 20px;
+    background-color: #fafafb;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 .edit-offer-btn {

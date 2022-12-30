@@ -32,6 +32,7 @@ import { CommentsService } from './services/comments.service';
 import { CompanyInfoComponent } from './components/company-info/company-info.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { EditCompanyComponent } from './components/edit-company/edit-company.component';
+import { NewOfferComponent } from './components/new-offer/new-offer.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { EditCompanyComponent } from './components/edit-company/edit-company.com
     ReplyAreaComponent,
     CompanyInfoComponent,
     UserInfoComponent,
-    EditCompanyComponent
+    EditCompanyComponent,
+    NewOfferComponent
   ],
   imports: [
     BrowserModule,
