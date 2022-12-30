@@ -27,6 +27,11 @@ export class AuthenticationService {
     return this.http.put(url, header);
   }
 
+  updateUser(id: number, header: any): Observable<any> {
+    const url = this.baseUrl + '/user/account/?id=' + id;
+    return this.http.put(url, header);
+  }
+
   registerCompany(header: any): Observable<any> {
     const url = this.baseUrl + '/company/register/';
     return this.http.post(url, header);

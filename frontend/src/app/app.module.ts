@@ -33,6 +33,7 @@ import { CompanyInfoComponent } from './components/company-info/company-info.com
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { EditCompanyComponent } from './components/edit-company/edit-company.component';
 import { NewOfferComponent } from './components/new-offer/new-offer.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { NewOfferComponent } from './components/new-offer/new-offer.component';
     CompanyInfoComponent,
     UserInfoComponent,
     EditCompanyComponent,
-    NewOfferComponent
+    NewOfferComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

@@ -42,29 +42,15 @@ export class ReservedAreaPageComponent implements OnInit {
         this.getCompanyInfo();
       }
     }
-    
   }
 
 
   getUserInfo() {
-    
-    this.apiService.getUserById(this.userId).subscribe(
-      (data: User) => {
-        this.user = data;
-        console.log(this.user);
-      }
-    );
-
+    this.apiService.getUserById(this.userId).subscribe((data: User) => this.user = data);
   }
 
   getCompanyInfo() {
-
-    this.apiService.getCompanyById(this.userId).subscribe(
-      (data: Company) => {
-        this.company = data;
-        console.log(this.company);
-      }
-    );
+    this.apiService.getCompanyById(this.userId).subscribe((data: Company) => this.company = data);
   }
 
   reload() {

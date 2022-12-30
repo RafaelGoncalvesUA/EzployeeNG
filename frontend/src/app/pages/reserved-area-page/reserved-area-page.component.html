@@ -15,18 +15,15 @@
         <div *ngIf="type == 'user'">
             
         <h4 style="text-align: center">Dados pessoais</h4>
-
-        <h1>User component here</h1>
+        <app-user-info [user]="user" ></app-user-info>
 
         <!-- Other operations -->
-        <div style="margin-top: 30px;">
+        <div style="margin-top: 80px;">
             <h4 style="text-align: center; margin-bottom: 30px;">Outras operações</h4>
             <div class="row align-items-start" style="margin-top: 20px;">
                 <div class="col-3"></div>
                 <div class="col-3">
-                    <button class="option" style="background-color: rgb(137, 174, 218);">
-                        <p>Alterar dados pessoais</p>
-                    </button>
+                    <app-edit-user [user]="user" (editUserDone)="reload()"></app-edit-user>
                 </div>
 
                 <div class="col-3">
@@ -34,6 +31,8 @@
                         <p>Os meus favoritos</p>
                     </button>
                 </div>
+
+                <div class="col-3"></div>
             </div>
         </div>
 
