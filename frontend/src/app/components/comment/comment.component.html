@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        <div class="replies" *ngIf="replies != undefined && replies.length > 0">
+        <div class="replies" style="cursor: pointer;" (click)="showReplyBox()" *ngIf="replies != undefined && replies.length > 0" >
             <app-reply (replyDeleted)="reload()" *ngFor="let reply of replies" [reply]="reply"></app-reply>
         </div>
 
