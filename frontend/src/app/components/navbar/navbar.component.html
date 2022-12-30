@@ -15,14 +15,14 @@
             </div>
             
 
-            <div *ngIf="loggedIn; else loggedOut" class="navbar-nav">
-                <a class="nav-link navbar-account" routerLink="/logout">Logout</a>
+            <div *ngIf="loggedIn" class="navbar-nav">
+                <a (click)="logout()" class="nav-link navbar-account" routerLink="/logout">Logout</a>
             </div>
             
-            <ng-template #loggedOut>
+            <div *ngIf="!loggedIn" class="navbar-nav">
                 <a class="nav-link navbar-account" routerLink="/login">Entrar</a>
                 <button type="button" class="btn btn-primary register-btn" routerLink="/register">Criar conta</button>
-            </ng-template>
+            </div>
         
         </div>
     </div>

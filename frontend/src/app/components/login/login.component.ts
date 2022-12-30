@@ -58,7 +58,8 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('last_name', this.response.last_name);
       }
       
-      this.router.navigate(['/']);
+      //redirect to home page
+      window.location.href = '/';
     }
   }
 

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +9,6 @@ import { AuthenticationService } from './services/authentication.service';
 export class AppComponent implements OnInit {
   title = 'client';
 
-  constructor(private authenticationService: AuthenticationService) { }
-
-  ngOnInit(): void {
-    //console.log(this.authenticationService.loggedIn());
-  }
+  constructor() {}
+  ngOnInit(): void {}
 }
