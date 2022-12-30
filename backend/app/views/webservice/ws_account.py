@@ -4,12 +4,14 @@ from rest_framework.response import Response
 from app.serializers import *
 from app.models import *
 from app.security import *
+from django.contrib.auth.hashers import make_password
 
 # @api_view(['PUT'])
 def put_user_account(request):
     user_id = request.GET['id']
     user = User.objects.get(id=user_id)
     serializer = UserSerializer(user, data=request.data)
+    serializer['password'] = make_password(serializer['password'])
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -21,6 +23,7 @@ def put_company_account(request):
     company_id = request.GET['id']
     company = Company.objects.get(id=company_id)
     serializer = CompanySerializer(company, data=request.data)
+    serializer['password'] = make_password(serializer['password'])
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
