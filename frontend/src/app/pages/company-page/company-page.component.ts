@@ -3,7 +3,6 @@ import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Company } from 'src/app/classes/Company';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
-import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-company-page',
@@ -25,27 +24,9 @@ export class CompanyPageComponent implements OnInit {
 
 
   //async para esperar pelo ultimo valor do observable
-  async getCompanyById() {
+  getCompanyById() {
     this.companyId = +this.route.snapshot.paramMap.get('id');
-
-    if (this.companyId != undefined) {
-      const aux$ = this.apiRequestService.getCompanyById(this.companyId);
-      this.company = await lastValueFrom(aux$);
-  
-      if (this.company.logo != null)
-        this.apiRequestService.getImage(this.company.logo).subscribe(data => this.createImageFromBlob(data));
-      else
-        this.logoImage = "assets/images/default_image.png";
-    }
-  }
-
-
-  createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener("load", () => this.logoImage = reader.result, false);
- 
-    if (image)
-       reader.readAsDataURL(image);
+    this.apiRequestService.getCompanyById(this.companyId).subscribe(data => this.company = data);
   }
 
 }

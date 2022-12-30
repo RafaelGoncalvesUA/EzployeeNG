@@ -6,6 +6,7 @@ import { OnInit } from '@angular/core';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
 import { User } from 'src/app/classes/User';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { CommentsService } from 'src/app/services/comments.service';
 
 @Component({
   selector: 'app-comment',
@@ -26,6 +27,7 @@ export class CommentComponent implements OnInit {
   constructor(
     private apiRequestService : ApiRequestsService,
     private authService: AuthenticationService,
+    private commentsService: CommentsService
     ) { }
 
   ngOnInit(): void {
@@ -77,7 +79,7 @@ export class CommentComponent implements OnInit {
   }
 
   deleteComment() {
-    this.apiRequestService.deleteComment(this.comment.id).subscribe();
+    this.commentsService.deleteComment(this.comment.id).subscribe();
     
     //notify parent
     this.commentDeleted.emit(true);

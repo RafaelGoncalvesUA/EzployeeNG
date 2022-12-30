@@ -29,6 +29,9 @@ import { AuthenticationService } from './services/authentication.service';
 import { CommentAreaComponent } from './components/comment-area/comment-area.component';
 import { ReplyAreaComponent } from './components/reply-area/reply-area.component';
 import { CommentsService } from './services/comments.service';
+import { CompanyInfoComponent } from './components/company-info/company-info.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
+import { EditCompanyComponent } from './components/edit-company/edit-company.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { CommentsService } from './services/comments.service';
     ReplyComponent,
     CommentsComponent,
     CommentAreaComponent,
-    ReplyAreaComponent
+    ReplyAreaComponent,
+    CompanyInfoComponent,
+    UserInfoComponent,
+    EditCompanyComponent
   ],
   imports: [
     BrowserModule,

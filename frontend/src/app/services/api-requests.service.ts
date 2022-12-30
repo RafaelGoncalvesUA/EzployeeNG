@@ -58,9 +58,10 @@ export class ApiRequestsService {
     const url = this.baseUrl + '/user/account?id=' + id;
     return this.http.get(url);
   }
-  
-  deleteComment(id: number): Observable<any> {
-    const url = this.baseUrl + '/comments?id=' + id;
-    return this.http.delete(url);
+
+  getCompanyDetailsById(id: number): Observable<any> {
+    const url = this.baseUrl + '/company/account?id=' + id;
+    return this.http.get(url);
   }
+  
 }

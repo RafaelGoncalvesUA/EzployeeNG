@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ApiRequestsService } from 'src/app/services/api-requests.service';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -24,7 +23,6 @@ export class RegisterCompanyComponent implements OnInit {
   logo: boolean = false;
 
   constructor(
-    private apiRequestsService: ApiRequestsService,
     private authenticationService: AuthenticationService,
     private router: Router) { }
 
