@@ -16,6 +16,7 @@ def login(request):
             user = MyUser.objects.get(email=email)
             api_user = API_User.objects.get(username=user.email)
             if check_password(password, user.password):
+                print("user")
                 serializer = UserSerializer(user)
                 token = Token.objects.get(user=api_user)
                 response = serializer.data
@@ -23,6 +24,7 @@ def login(request):
                 response['token'] = token.key
                 response["type"] = "user"
                 return Response(response, status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
         except MyUser.DoesNotExist:
             pass
 
@@ -37,10 +39,10 @@ def login(request):
                 response['token'] = token.key
                 response["type"] = "company"
                 return Response(response, status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
         except Company.DoesNotExist:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-        return Response(status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
