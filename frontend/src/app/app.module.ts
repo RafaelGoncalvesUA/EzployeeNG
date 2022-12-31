@@ -34,6 +34,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { EditCompanyComponent } from './components/edit-company/edit-company.component';
 import { NewOfferComponent } from './components/new-offer/new-offer.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { CommentsPageComponent } from './pages/comments-page/comments-page.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     UserInfoComponent,
     EditCompanyComponent,
     NewOfferComponent,
-    EditUserComponent
+    EditUserComponent,
+    CommentsPageComponent
   ],
   imports: [
     BrowserModule,

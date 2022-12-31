@@ -9,12 +9,14 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { CompanyPageComponent } from './pages/company-page/company-page.component';
 import { OfferPageComponent } from './pages/offer-page/offer-page.component';
 import { RegisterCompanyPageComponent } from './pages/register-company-page/register-company-page.component';
+import { CommentsPageComponent } from './pages/comments-page/comments-page.component';
 
 
 const routes: Routes = [
   {path: '', component: IndexPageComponent},
   {path: 'companies', component: CompaniesPageComponent},
   {path: 'companies/:id', component: CompanyPageComponent},
+  {path: 'comments', component: CommentsPageComponent},
   {path: 'offers', component: OffersPageComponent},
   {path: 'offers/:id', component: OfferPageComponent},
   {path: 'reserved', component: ReservedAreaPageComponent},

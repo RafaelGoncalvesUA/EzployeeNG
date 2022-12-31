@@ -12,6 +12,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class CommentsComponent implements OnInit {
 
   @Input() companyId: number;
+  @Input() fromReservedArea: boolean = false;
   comments: Comment[];
   ableToComment: boolean = false;
 
@@ -21,13 +22,15 @@ export class CommentsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
     //check if current user can comment
-    if (this.authService.loggedIn() && this.authService.getUserInfo().type == 'user')
+    if (this.authService.loggedIn()) {
+      if (this.authService.getUserInfo().type == 'company')
+      this.ableToComment = false;
+      else if (this.authService.getUserInfo().type == 'user')
       this.ableToComment = true;
-
+      
+    }
     this.getComments();
-
   }
   
   getComments() {

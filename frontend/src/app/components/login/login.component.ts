@@ -32,6 +32,9 @@ export class LoginComponent implements OnInit {
   }
 
   async onSubmit() {
+    //reset session storage
+    sessionStorage.clear();
+
     this.validEmail = this.loginForm.controls['email'].valid;
     this.validPassword = this.loginForm.controls['password'].valid;
 
@@ -45,7 +48,6 @@ export class LoginComponent implements OnInit {
       const response$ = this.authenticationService.authenticate(header);
       this.response = await lastValueFrom(response$);
 
-      //do this in a service???
       sessionStorage.setItem('id', this.response.id);
       sessionStorage.setItem('email', this.response.email);
       sessionStorage.setItem('type', this.response.type);
