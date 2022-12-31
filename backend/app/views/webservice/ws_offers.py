@@ -15,6 +15,12 @@ def get_offers(request):
         serializer = OfferSerializer(offer)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    elif 'company' in request.GET:
+        company_id = int(request.GET['company'])
+        offers = Offer.objects.filter(company_id=company_id)
+        serializer = OfferSerializer(offers, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     else:
         if (
             'title' in request.GET
