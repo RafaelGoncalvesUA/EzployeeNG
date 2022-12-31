@@ -5,7 +5,7 @@
     </div>
     
     <div style="margin-bottom: 20px;">
-        <div class=" offer-logo">todo</div>
+        <div *ngIf="companyLogo != undefined" [ngStyle]="{'background-image': 'url(' + companyLogo+ ')'}" class=" offer-logo"></div>
     </div>
 
     <!-- Table with company info  -->
@@ -14,7 +14,7 @@
             <tbody>
                 <tr>
                     <th scope="row" class="table-row">Empresa</th>
-                    <td class="td-table">{{"TODO: add to django model?"}}</td>
+                    <td class="td-table">{{offer.company['name']}}</td>
                 </tr>
 
                 <tr>

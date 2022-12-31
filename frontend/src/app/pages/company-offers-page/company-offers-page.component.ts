@@ -27,7 +27,6 @@ export class CompanyOffersPageComponent implements OnInit {
   getCompanyOffers() {
     this.apiRequestsService.getOffersByCompany(this.company_id).subscribe(offers => {
       this.offers = offers;
-      console.log(this.offers);
     });
   }
 

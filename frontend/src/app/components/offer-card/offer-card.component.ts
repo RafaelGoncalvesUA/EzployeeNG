@@ -15,9 +15,29 @@ export class OfferCardComponent implements OnInit {
 
   @Input() offer: Offer;
   @Input() fromOwner: boolean = false;
+  companyLogo: any;
 
   constructor(private apiRequestService : ApiRequestsService) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.getCompanyLogo();
+  }
+
+
+  //async para esperar pelo ultimo valor do observable
+  getCompanyLogo() {
+    if (this.offer.company['logo'] != null)
+      this.apiRequestService.getImage(this.offer.company['logo']).subscribe(data => this.createImageFromBlob(data));
+    else
+      this.companyLogo = "assets/images/default_image.png";
+  }
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => this.companyLogo = reader.result, false);
+ 
+    if (image)
+      reader.readAsDataURL(image);
+  }
 
 }
