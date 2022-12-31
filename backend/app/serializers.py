@@ -11,6 +11,7 @@ class OfferSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offer
         fields = '__all__'
+        depth = 1
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
