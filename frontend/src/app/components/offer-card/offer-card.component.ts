@@ -14,6 +14,7 @@ import { ApiRequestsService } from 'src/app/services/api-requests.service';
 export class OfferCardComponent implements OnInit {
 
   @Input() offer: Offer;
+  @Input() fromOwner: boolean = false;
 
   constructor(private apiRequestService : ApiRequestsService) {}
 

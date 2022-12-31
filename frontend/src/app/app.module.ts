@@ -35,6 +35,8 @@ import { EditCompanyComponent } from './components/edit-company/edit-company.com
 import { NewOfferComponent } from './components/new-offer/new-offer.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { CommentsPageComponent } from './pages/comments-page/comments-page.component';
+import { CompanyOffersPageComponent } from './pages/company-offers-page/company-offers-page.component';
+import { EditOfferComponent } from './components/edit-offer/edit-offer.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { CommentsPageComponent } from './pages/comments-page/comments-page.compo
     EditCompanyComponent,
     NewOfferComponent,
     EditUserComponent,
-    CommentsPageComponent
+    CommentsPageComponent,
+    CompanyOffersPageComponent,
+    EditOfferComponent
   ],
   imports: [
     BrowserModule,

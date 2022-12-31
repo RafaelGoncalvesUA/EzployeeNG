@@ -26,6 +26,11 @@ export class ApiRequestsService {
     return this.http.get<Offer>(url);
   }
 
+  getOffersByCompany(id: number): Observable<Offer[]> {
+    const url = this.baseUrl + '/offers?company=' + id;
+    return this.http.get<Offer[]>(url);
+  }
+
   getCompanies(args?: any): Observable<Company[]> {
     const url = this.baseUrl + '/companies';
 
@@ -67,6 +72,16 @@ export class ApiRequestsService {
   addOffer(offer): Observable<any> {
     const url = this.baseUrl + '/offers/';
     return this.http.post(url, offer);
+  }
+
+  updateOffer(offerId, offer): Observable<any> {
+    const url = this.baseUrl + '/offers/?id=' + offerId;
+    return this.http.put(url, offer);
+  }
+
+  deleteOffer(offerId): Observable<any> {
+    const url = this.baseUrl + '/offers/?id=' + offerId;
+    return this.http.delete(url);
   }
 
 }

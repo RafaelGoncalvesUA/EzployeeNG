@@ -48,22 +48,19 @@
         </div>
 
         <!-- Button (edit or see details???) -->
-        <!-- {% if reserved %}
-        <div class="row">
+        <div *ngIf="fromOwner" class="row">
             <div class="col-6">
-                <a href="/offers/todo">
+                <a routerLink="/offers/{{offer.id}}">
                     <button class="btn btn-primary edit-offer-btn" style="margin-top: 10px;">Ver detalhes</button>
                 </a>
             </div>
             
             <div class="col-6">
-                <a href="./offers/todo">
-                    <button class="btn btn-primary edit-offer-btn" style="margin-top: 10px;">Editar</button>
-                </a>
+                <app-edit-offer [offer]="offer"></app-edit-offer>
             </div>
         </div>
-        {% endif %}
-        {% if session == "user" %}
+
+        <!-- {% if session == "user" %}
             {% if offer.fav %}
                 <a href="/favorite/remove/offer/{{offer.id}}">
                     <button class='fav_button'><i class="fa fa-heart" aria-hidden="true"></i></button>

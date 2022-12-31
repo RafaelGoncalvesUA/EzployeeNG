@@ -10,16 +10,18 @@ import { CompanyPageComponent } from './pages/company-page/company-page.componen
 import { OfferPageComponent } from './pages/offer-page/offer-page.component';
 import { RegisterCompanyPageComponent } from './pages/register-company-page/register-company-page.component';
 import { CommentsPageComponent } from './pages/comments-page/comments-page.component';
+import { CompanyOffersPageComponent } from './pages/company-offers-page/company-offers-page.component';
 
 
 const routes: Routes = [
   {path: '', component: IndexPageComponent},
   {path: 'companies', component: CompaniesPageComponent},
   {path: 'companies/:id', component: CompanyPageComponent},
-  {path: 'comments', component: CommentsPageComponent},
   {path: 'offers', component: OffersPageComponent},
   {path: 'offers/:id', component: OfferPageComponent},
   {path: 'reserved', component: ReservedAreaPageComponent},
+  {path: 'reserved/comments', component: CommentsPageComponent},
+  {path: 'reserved/offers', component: CompanyOffersPageComponent},
   {path: 'register', component: RegisterPageComponent},
   {path: 'register_company', component: RegisterCompanyPageComponent},
   {path: 'login', component: LoginPageComponent},
