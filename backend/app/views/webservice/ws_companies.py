@@ -34,6 +34,13 @@ def get_companies(request):
             companies = Company.objects.all()
 
         serializer = CompanySerializer(companies, many=True)
+
+        faved_companies = []
+        if 'user_id' in request.GET:
+            faved_companies = User.objects.get(id=int(request.GET['user_id'])).fav_companies.all()
+        ids = [c.id for c in faved_companies]
+        for company in serializer.data:
+            company['fav'] = company['id'] in ids
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
