@@ -46,9 +46,10 @@
                         <input (change)="onChange($event)" type="file" name="logo" class="form-control" required>
                     </div>
     
-                    <!-- Errors -->
-                    <!-- {% if error_account %}<p style="color: red;">Esta conta já existe</p>{% endif %} -->
-    
+                    <div *ngIf="registerFail" style="text-align: center;">
+                        <p style="color: rgb(187, 0, 0)">Email ou password incorretas</p>
+                    </div>
+
                     <!-- Submit button -->
                     <div style="text-align: center; margin-top: 50px;">
                         <button type="submit" class="btn btn-primary btn-block mb-4 register-login-btn">

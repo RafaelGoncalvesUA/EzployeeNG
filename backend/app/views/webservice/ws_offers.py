@@ -63,6 +63,14 @@ def get_offers(request):
             offers = Offer.objects.all()
 
         serializer = OfferSerializer(offers, many=True)
+
+        faved_offers = []
+        if 'user_id' in request.GET:
+            faved_offers = User.objects.get(id=int(request.GET['user_id'])).fav_offers.all()
+        ids = [offer.id for offer in faved_offers]
+        for offer in serializer.data:
+            offer['fav'] = offer['id'] in ids
+
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 

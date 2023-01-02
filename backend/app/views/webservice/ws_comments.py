@@ -15,6 +15,18 @@ def get_comments(request):
     company_id = int(request.GET['id'])
     comments = Comment.objects.filter(company_id=Company.objects.get(id=company_id))
     serializer = CommentSerializer(comments, many=True)
+
+    for comment in serializer.data:
+        comment['img_url'] = User.objects.get(id=comment['user']).profile_pic.url
+        comment['replies'] = [
+            {
+                'text' : reply.text,
+                'name': reply.user.first_name + ' ' + reply.user.last_name,
+                'img_url' : reply.user.profile_pic.url,
+                'time': reply.time,
+            } for reply in Reply.objects.filter(comment_id=comment['id'])
+        ]
+
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 

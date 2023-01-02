@@ -14,15 +14,12 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 
 export class LoginComponent implements OnInit {
 
-  response: any;
   loginForm: FormGroup;
   validEmail: boolean = true;
   validPassword: boolean = true;
+  loginFail: boolean = false;
   
-  constructor(
-    private apiRequestsService: ApiRequestsService,
-    private authenticationService: AuthenticationService,
-    private router: Router) { }
+  constructor(private authenticationService: AuthenticationService) { }
   
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -31,10 +28,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  async onSubmit() {
+  onSubmit() {
     //reset session storage
     sessionStorage.clear();
-
     this.validEmail = this.loginForm.controls['email'].valid;
     this.validPassword = this.loginForm.controls['password'].valid;
 
@@ -45,23 +41,30 @@ export class LoginComponent implements OnInit {
         "password": this.loginForm.value.password
       }
 
-      const response$ = this.authenticationService.authenticate(header);
-      this.response = await lastValueFrom(response$);
+      this.authenticationService.authenticate(header).subscribe(response => {
 
-      sessionStorage.setItem('id', this.response.id);
-      sessionStorage.setItem('email', this.response.email);
-      sessionStorage.setItem('type', this.response.type);
-      sessionStorage.setItem('token', this.response.token);
+        if ('error' in response) {
+          this.loginFail = true;
+          this.loginForm.reset();
+        }
+        else {
+    
+          sessionStorage.setItem('id', response.id);
+          sessionStorage.setItem('email', response.email);
+          sessionStorage.setItem('type', response.type);
+          sessionStorage.setItem('token', response.token);
+    
+          if (response.type == 'company')
+            sessionStorage.setItem('name', response.name);
+          else {
+            sessionStorage.setItem('first_name', response.first_name);
+            sessionStorage.setItem('last_name', response.last_name);
+          }
 
-      if (this.response.type == 'company')
-        sessionStorage.setItem('name', this.response.name);
-      else {
-        sessionStorage.setItem('first_name', this.response.first_name);
-        sessionStorage.setItem('last_name', this.response.last_name);
-      }
-      
-      //redirect to home page
-      window.location.href = '/';
+          this.loginFail = false;
+          window.location.href = '/';
+        }
+      });
     }
   }
 
