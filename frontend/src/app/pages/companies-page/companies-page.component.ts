@@ -3,6 +3,7 @@ import { ApiRequestsService } from 'src/app/services/api-requests.service';
 import { OnInit } from '@angular/core';
 import { Company } from 'src/app/classes/Company';
 import { lastValueFrom } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
 
 declare var $: any;
 
@@ -13,13 +14,25 @@ declare var $: any;
 })
 export class CompaniesPageComponent implements OnInit {
 
+  filterForm: FormGroup;
   companies: Company[] = [];
   
   constructor(private apiRequestsService: ApiRequestsService) { }
 
-  async ngOnInit() {  
+  async ngOnInit() {
+
+    //initiliaze filter form
+    this.filterForm = new FormGroup({
+      name: new FormControl(''),
+      rating: new FormControl('0'),
+      order: new FormControl('0')
+    });
+
+    //get companies
     const response$ = this.apiRequestsService.getCompanies()
     this.companies = await lastValueFrom(response$);
+
+    //autocomplete
     let names = this.companies.map(company => company.name);
     names.sort();
     $('#name').autocomplete({
@@ -30,12 +43,11 @@ export class CompaniesPageComponent implements OnInit {
     });
   }
 
-  filterCompanies(name: string, rating: string, order: string) {
-
+  onSubmit() {
     let filters = {
-      "name": name,
-      "rating": rating,
-      "order": order
+      "name": this.filterForm.get('name').value,
+      "rating": this.filterForm.get('rating').value,
+      "order": this.filterForm.get('order').value
     };
 
     this.apiRequestsService.getCompanies(filters).subscribe(companies => this.companies = companies);

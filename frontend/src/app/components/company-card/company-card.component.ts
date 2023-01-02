@@ -25,6 +25,9 @@ export class CompanyCardComponent implements OnInit {
       this.getImageFromService();
     else
       this.logoImage = "assets/images/default_image.png";
+
+    //round avg_rating
+    this.company.avg_rating = Number((this.company.avg_rating).toFixed(1));
   }
 
 
