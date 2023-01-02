@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Offer } from 'src/app/classes/Offer';
-import { Input } from '@angular/core';
+import { Input, Output, EventEmitter } from '@angular/core';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
@@ -17,6 +17,7 @@ export class OfferCardComponent implements OnInit {
 
   @Input() offer: Offer;
   @Input() fromOwner: boolean = false;
+  @Output() unfavEvent = new EventEmitter();
   companyLogo: any;
   userId: number;
 
@@ -67,6 +68,7 @@ export class OfferCardComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
+    this.unfavEvent.emit(this.offer.id);
     this.offer.fav = false;
     this.apiRequestService.unfavOffer(this.offer.id, this.userId).subscribe(data => {}), error => {
       this.offer.fav = true;

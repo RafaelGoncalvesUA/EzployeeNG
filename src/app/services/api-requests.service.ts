@@ -107,4 +107,14 @@ export class ApiRequestsService {
     return this.http.delete(url, { body: {"offer_id": offerId, "user_id": userId} });
   }
 
+  getFavCompanies(userId): Observable<any> {
+    const url = this.baseUrl + '/favs/companies/?id=' + userId;
+    return this.http.get(url);
+  }
+
+  getFavOffers(userId): Observable<any> {
+    const url = this.baseUrl + '/favs/offers/?id=' + userId;
+    return this.http.get(url);
+  }
+
 }

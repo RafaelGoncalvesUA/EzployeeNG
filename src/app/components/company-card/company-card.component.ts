@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Company } from 'src/app/classes/Company';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
-import { Input } from '@angular/core';
+import { Input, Output, EventEmitter } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class CompanyCardComponent implements OnInit {
 
   @Input() company: Company;
+  @Output() unfavEvent = new EventEmitter();
   logoImage: any;
   isImageLoading: boolean = true;
   userId: number;
@@ -82,6 +83,7 @@ export class CompanyCardComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
+    this.unfavEvent.emit(this.company.id);
     this.company.fav = false;
     this.apiRequestService.unfavCompany(this.company.id, this.userId).subscribe(data => {}), error => {
       this.company.fav = true;

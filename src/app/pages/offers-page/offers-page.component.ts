@@ -23,7 +23,7 @@ export class OffersPageComponent implements OnInit {
     this.offers = [];
   }
 
-  async ngOnInit() {
+  ngOnInit() {
 
     // Get offers
     if (this.authenticationService.loggedIn()) {

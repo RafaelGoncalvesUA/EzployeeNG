@@ -1,0 +1,46 @@
+<div class="container" style="margin-top: 80px; margin-bottom: 150px;">
+
+    <nav>
+        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="companies-tab" data-bs-toggle="tab" data-bs-target="#companies" type="button" role="tab" aria-controls="companies" aria-selected="true" style="color: black ;">
+                Companies
+            </button>
+            <button class="nav-link" id="offers-tab" data-bs-toggle="tab" data-bs-target="#offers" type="button" role="tab" aria-controls="offers" aria-selected="false" style="color: black ;">
+                Offers
+            </button>
+        </div>
+    </nav>
+    <hr/>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="companies" role="tabpanel" aria-labelledby="companies-tab" tabindex="0">
+            <div class="row">
+                <div *ngIf="companies.length > 0; else elseBlock1" class="row">
+                    <div *ngFor="let offer of companies" class="col-sm-12 col-lg-6 col-xl-4 ">
+                        <app-company-card [company]="offer" (unfavEvent)="refreshCompanies(offer.id)" ></app-company-card>
+                    </div>
+                </div>
+        
+                <ng-template #elseBlock1>
+                    <div class="col-12">
+                        <h4>Sem empresas adicionadas aos favoritos.</h4>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="offers" role="tabpanel" aria-labelledby="offers-tab" tabindex="0">
+
+            <div *ngIf="offers.length > 0; else elseBlock2" class="row">
+                <div *ngFor="let offer of offers" class="col-12 col-xl-6">
+                    <app-offer-card [offer]="offer" (unfavEvent)="refreshOffers(offer.id)"></app-offer-card>
+                </div>
+            </div>
+
+            <ng-template #elseBlock2>
+                <div class="col-12">
+                    <h4>Sem filtros adicionados aos favoritos.</h4>
+                </div>
+            </ng-template>
+
+        </div>
+    </div>
+</div>

@@ -11,7 +11,7 @@ import { OfferPageComponent } from './pages/offer-page/offer-page.component';
 import { RegisterCompanyPageComponent } from './pages/register-company-page/register-company-page.component';
 import { CommentsPageComponent } from './pages/comments-page/comments-page.component';
 import { CompanyOffersPageComponent } from './pages/company-offers-page/company-offers-page.component';
-
+import { MyfavoritesPageComponent } from './pages/myfavorites-page/myfavorites-page.component';
 
 const routes: Routes = [
   {path: '', component: IndexPageComponent},
@@ -25,6 +25,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterPageComponent},
   {path: 'register_company', component: RegisterCompanyPageComponent},
   {path: 'login', component: LoginPageComponent},
+  {path: 'myfavorites', component: MyfavoritesPageComponent},
+  {path: '**', redirectTo: '/'}
 
 ];
 

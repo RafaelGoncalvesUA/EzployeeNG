@@ -11,6 +11,7 @@ def get_offer_favs(request):
     user = User.objects.get(id=user_id)
     offer_favs= user.fav_offers.all()
     serializer = OfferSerializer(offer_favs, many=True)
+    for o in serializer.data: o['fav'] = True
     return Response(serializer.data, status=status.HTTP_200_OK)
    
 

@@ -11,6 +11,7 @@ def get_company_favs(request):
     user = User.objects.get(id=user_id)
     company_favs = user.fav_companies.all()
     serializer = CompanySerializer(company_favs, many=True)
+    for c in serializer.data: c['fav'] = True
     return Response(serializer.data, status=status.HTTP_200_OK)
    
 
