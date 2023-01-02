@@ -1,0 +1,97 @@
+
+/* index page */
+.css-selector {
+    background: linear-gradient(141deg, #ad7add, #5c5fea);
+    background-size: 400% 400%;
+    animation: AnimationName 46s ease infinite;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 30px;
+}
+    
+@keyframes AnimationName {
+    0%{background-position:14% 0%}
+    50%{background-position:87% 100%}
+    100%{background-position:14% 0%}
+}
+
+.create-btn {
+    background-color: white;
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18pt;
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    margin-top: 30px;
+    cursor: pointer;
+    margin-top: 50px;
+}
+
+.banner-index {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(236, 236, 236);
+}
+
+.banner-title {
+    font-family: 'Gloria Hallelujah', cursive;
+    color: white;
+    font-size: 80pt;
+}
+
+.banner-text {
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 22pt; 
+}
+
+.card-line {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(236, 236, 236);
+    margin-bottom: 24px;
+}
+
+
+.card-index {
+    background-color: whitesmoke;
+    height: 370px;
+    border-radius: 10px;
+    padding: 30px 40px 40px 30px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(236, 236, 236);
+}
+
+.card-index-img {
+    width: 80px;
+    height: 80px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-bottom: 30px;
+}
+
+.card-text {
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    font-size: 22pt; 
+}
