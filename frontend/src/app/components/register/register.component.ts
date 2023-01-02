@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
   validEmail: boolean = true;
   validPassword: boolean = true;
   profile_pic: boolean = false;
+  registerFail: boolean = false;
 
   constructor(
     private apiRequestsService: ApiRequestsService,
@@ -74,15 +75,16 @@ export class RegisterComponent implements OnInit {
         }
       }
 
-      const response$ = this.authenticationService.registerUser(formData);
-      this.response = await lastValueFrom(response$);
-      console.log(this.response);
+      this.authenticationService.registerUser(formData).subscribe(response => {
+        
+        if ('error' in response) {
+          this.registerFail = true;
+          this.registerForm.reset();
+        }
+        else
+          this.router.navigate(['/login']);
 
-      //if success
-      this.router.navigate(['/login']);
-
-      //TODO: if not success
-      //show error message in UI
+      });
     }
   }
 

@@ -3,6 +3,7 @@ import { Company } from 'src/app/classes/Company';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
 import { Input } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 
 @Component({
@@ -17,10 +18,21 @@ export class CompanyCardComponent implements OnInit {
   @Input() company: Company;
   logoImage: any;
   isImageLoading: boolean = true;
+  userId: number;
+  liked: boolean;
 
-  constructor(private apiRequestService : ApiRequestsService) {}
+  constructor(
+    private apiRequestService : ApiRequestsService,
+    private authenticationService: AuthenticationService
+    ) {}
 
   ngOnInit() {
+
+    //check if user is logged in
+    this.userId = this.authenticationService.loggedIn() ? +this.authenticationService.getUserInfo().id : undefined;
+    console.log(this.userId);
+
+
     if (this.company.logo != null)
       this.getImageFromService();
     else
