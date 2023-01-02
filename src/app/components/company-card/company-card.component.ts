@@ -4,7 +4,7 @@ import { ApiRequestsService } from 'src/app/services/api-requests.service';
 import { Input } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-card',
@@ -23,7 +23,8 @@ export class CompanyCardComponent implements OnInit {
 
   constructor(
     private apiRequestService : ApiRequestsService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router
     ) {}
 
   ngOnInit() {
@@ -31,7 +32,6 @@ export class CompanyCardComponent implements OnInit {
     //check if user is logged in
     this.userId = this.authenticationService.loggedIn() ? +this.authenticationService.getUserInfo().id : undefined;
     console.log(this.userId);
-
 
     if (this.company.logo != null)
       this.getImageFromService();
@@ -65,6 +65,32 @@ export class CompanyCardComponent implements OnInit {
         this.isImageLoading = false;
         console.log(error);
       });
+    }
+  }
+
+  fav() {
+    if (this.userId == undefined) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    this.apiRequestService.favCompany(this.company.id, this.userId).subscribe(data => {
+      this.company.fav = true;
+    }), error => {
+      this.company.fav = false;
+      console.log(error);
+    }
+  }
+
+  unfav() {
+    if (this.userId == undefined) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    this.apiRequestService.unfavCompany(this.company.id, this.userId).subscribe(data => {
+      this.company.fav = false;
+    }), error => {
+      this.company.fav = true;
+      console.log(error);
     }
   }
 

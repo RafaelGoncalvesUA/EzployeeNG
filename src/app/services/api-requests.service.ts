@@ -84,4 +84,14 @@ export class ApiRequestsService {
     return this.http.delete(url);
   }
 
+  favCompany(companyId, userId): Observable<any> {
+    const url = this.baseUrl + '/favs/companies/';
+    return this.http.post(url, {"company_id": companyId, "user_id": userId});
+  }
+
+  unfavCompany(companyId, userId): Observable<any> {
+    const url = this.baseUrl + '/favs/companies/';
+    return this.http.delete(url, { body: {"company_id": companyId, "user_id": userId} });
+  }
+
 }

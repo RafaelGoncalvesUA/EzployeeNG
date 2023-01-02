@@ -23,12 +23,12 @@
 
             </div>
 
-            <button *ngIf="userId == undefined" class='fav_button' routerLink="/login">
+            <button *ngIf="!company.fav" class='fav_button' (click)="fav()">
                 <i class="fa fa-heart-o" aria-hidden="true"></i>
             </button>
 
-            <button *ngIf="userId != undefined" class='fav_button' routerLink="/login">
-                <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <button *ngIf="company.fav" class='fav_button' (click)="unfav()">
+                <i class="fa fa-heart" aria-hidden="true"></i>
             </button>
 
 
