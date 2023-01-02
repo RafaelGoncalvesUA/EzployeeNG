@@ -18,6 +18,8 @@ def get_company_favs(request):
 def post_company_fav(request):
     user = User.objects.get(id=request.data['user_id'])
     company = Company.objects.get(id=request.data['company_id'])
+    if company in user.fav_companies.all():
+        return Response({'error': 'Company already in favorites'}, status=status.HTTP_400_BAD_REQUEST)
     user.fav_companies.add(company)
     return Response(status=status.HTTP_201_CREATED)
 

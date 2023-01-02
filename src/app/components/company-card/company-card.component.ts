@@ -19,7 +19,6 @@ export class CompanyCardComponent implements OnInit {
   logoImage: any;
   isImageLoading: boolean = true;
   userId: number;
-  liked: boolean;
 
   constructor(
     private apiRequestService : ApiRequestsService,
@@ -28,10 +27,8 @@ export class CompanyCardComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-
     //check if user is logged in
     this.userId = this.authenticationService.loggedIn() ? +this.authenticationService.getUserInfo().id : undefined;
-    console.log(this.userId);
 
     if (this.company.logo != null)
       this.getImageFromService();
@@ -73,9 +70,8 @@ export class CompanyCardComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
-    this.apiRequestService.favCompany(this.company.id, this.userId).subscribe(data => {
-      this.company.fav = true;
-    }), error => {
+    this.company.fav = true;
+    this.apiRequestService.favCompany(this.company.id, this.userId).subscribe(data => {}), error => {
       this.company.fav = false;
       console.log(error);
     }
@@ -86,9 +82,8 @@ export class CompanyCardComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
-    this.apiRequestService.unfavCompany(this.company.id, this.userId).subscribe(data => {
-      this.company.fav = false;
-    }), error => {
+    this.company.fav = false;
+    this.apiRequestService.unfavCompany(this.company.id, this.userId).subscribe(data => {}), error => {
       this.company.fav = true;
       console.log(error);
     }

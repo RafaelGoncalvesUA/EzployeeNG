@@ -3,6 +3,7 @@ import { OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { Offer } from 'src/app/classes/Offer';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 declare var $: any;
 
@@ -15,13 +16,24 @@ export class OffersPageComponent implements OnInit {
 
   offers: Offer[];
 
-  constructor(private apiRequestsService: ApiRequestsService) {
+  constructor(
+    private apiRequestsService: ApiRequestsService,
+    private authenticationService: AuthenticationService
+    ) {
     this.offers = [];
   }
 
   async ngOnInit() {
-    const response$ = this.apiRequestsService.getOffers();
-    this.offers = await lastValueFrom(response$);
+
+    // Get offers
+    if (this.authenticationService.loggedIn()) {
+      let userId = +this.authenticationService.getUserInfo().id;
+      this.apiRequestsService.getOffers({user_id: userId}).subscribe(offers => this.offers = offers);
+    } else {
+      this.apiRequestsService.getOffers().subscribe(offers => this.offers = offers);
+    }
+
+    // Autocomplete
     let titles = this.offers.map(company => company.title);
     titles.sort();
     $('#title').autocomplete({

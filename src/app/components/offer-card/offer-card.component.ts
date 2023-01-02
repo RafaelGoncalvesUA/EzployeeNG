@@ -3,6 +3,8 @@ import { OnInit } from '@angular/core';
 import { Offer } from 'src/app/classes/Offer';
 import { Input } from '@angular/core';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-offer-card',
@@ -16,10 +18,18 @@ export class OfferCardComponent implements OnInit {
   @Input() offer: Offer;
   @Input() fromOwner: boolean = false;
   companyLogo: any;
+  userId: number;
 
-  constructor(private apiRequestService : ApiRequestsService) {}
+  constructor(
+    private apiRequestService : ApiRequestsService,
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    //check if user is logged in
+    this.userId = this.authenticationService.loggedIn() ? +this.authenticationService.getUserInfo().id : undefined;
+
     this.getCompanyLogo();
   }
 
@@ -38,6 +48,30 @@ export class OfferCardComponent implements OnInit {
  
     if (image)
       reader.readAsDataURL(image);
+  }
+
+  fav() {
+    if (this.userId == undefined) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    this.offer.fav = true;
+    this.apiRequestService.favOffer(this.offer.id, this.userId).subscribe(data => {}), error => {
+      this.offer.fav = false;
+      console.log(error);
+    }
+  }
+
+  unfav() {
+    if (this.userId == undefined) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    this.offer.fav = false;
+    this.apiRequestService.unfavOffer(this.offer.id, this.userId).subscribe(data => {}), error => {
+      this.offer.fav = true;
+      console.log(error);
+    }
   }
 
 }

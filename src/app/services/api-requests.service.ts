@@ -16,8 +16,11 @@ export class ApiRequestsService {
   constructor(private http: HttpClient) { }
 
 
-  getOffers(): Observable<Offer[]> {
+  getOffers(args?: any): Observable<Offer[]> {
     const url = this.baseUrl + '/offers';
+
+    if (args)
+      return this.http.get<Offer[]>(url, { params: args });
     return this.http.get<Offer[]>(url);
   }
 
@@ -92,6 +95,16 @@ export class ApiRequestsService {
   unfavCompany(companyId, userId): Observable<any> {
     const url = this.baseUrl + '/favs/companies/';
     return this.http.delete(url, { body: {"company_id": companyId, "user_id": userId} });
+  }
+
+  favOffer(offerId, userId): Observable<any> {
+    const url = this.baseUrl + '/favs/offers/';
+    return this.http.post(url, {"offer_id": offerId, "user_id": userId});
+  }
+
+  unfavOffer(offerId, userId): Observable<any> {
+    const url = this.baseUrl + '/favs/offers/';
+    return this.http.delete(url, { body: {"offer_id": offerId, "user_id": userId} });
   }
 
 }

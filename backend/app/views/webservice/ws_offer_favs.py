@@ -18,6 +18,8 @@ def get_offer_favs(request):
 def post_offer_fav(request):
     user = User.objects.get(id=request.data['user_id'])
     offer = Offer.objects.get(id=request.data['offer_id'])
+    if offer in user.fav_offers.all():
+        return Response({'error': 'Offer already in favorites'}, status=status.HTTP_400_BAD_REQUEST)
     user.fav_offers.add(offer)
     return Response(status=status.HTTP_201_CREATED)
 
@@ -28,7 +30,7 @@ def delete_offer_fav(request):
     user.fav_offers.remove(offer)
     return Response(status=status.HTTP_200_OK)
 
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'POST', 'DELETE'])
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def ws_offer_favs(request):

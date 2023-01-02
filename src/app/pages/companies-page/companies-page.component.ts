@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
 import { OnInit } from '@angular/core';
 import { Company } from 'src/app/classes/Company';
-import { lastValueFrom } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 declare var $: any;
 
@@ -17,9 +17,12 @@ export class CompaniesPageComponent implements OnInit {
   filterForm: FormGroup;
   companies: Company[] = [];
   
-  constructor(private apiRequestsService: ApiRequestsService) { }
+  constructor(
+    private apiRequestsService: ApiRequestsService,
+    private authenticationService: AuthenticationService
+    ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
 
     //initiliaze filter form
     this.filterForm = new FormGroup({
@@ -29,8 +32,12 @@ export class CompaniesPageComponent implements OnInit {
     });
 
     //get companies
-    const response$ = this.apiRequestsService.getCompanies()
-    this.companies = await lastValueFrom(response$);
+    if (this.authenticationService.loggedIn()) {
+      let userId = +this.authenticationService.getUserInfo().id;
+      this.apiRequestsService.getCompanies({user_id: userId}).subscribe(companies => this.companies = companies);
+    } else {
+      this.apiRequestsService.getCompanies().subscribe(companies => this.companies = companies);
+    }
 
     //autocomplete
     let names = this.companies.map(company => company.name);

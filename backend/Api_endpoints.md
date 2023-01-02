@@ -5,15 +5,15 @@
 | /api/login/ | POST | { "username": "string", "password": "string" } | Login |
 | /api/user/register/ | POST | UserSerializer | Register |
 | /api/company/register/ | POST | CompanySerializer | Register |
-| /api/offers/ | GET | - | ?id=x -> get offer with id x, else get all offers (with filters)?title=&min=0&max=300&years=0-3 anos&years=3-5 anos&model=Remoto&type=Tempo inteiro&order=0|
+| /api/offers/ | GET | - | ?id=x -> get offer with id x, else get all offers (with filters)?title=&min=0&max=300&years=0-3 anos&years=3-5 anos&model=Remoto&type=Tempo inteiro&order=0 ?user_id=x all offers with tag about favourite|
 | /api/offers/ | POST | OfferSerializer | Create offer |
 | /api/offers/ | PUT | OfferSerializer | ?id=x -> update offer with id x |
 | /api/offers/ | DELETE | - | ?id=x -> delete offer with id x |
-| /api/companies/ | GET | - | ?id=x -> get company with id x, else get all companies (with filters) ?name=&rating=0&order=0|
+| /api/companies/ | GET | - | ?id=x -> get company with id x, else get all companies (with filters) ?name=&rating=0&order=0 ?user_id=x all companies with tag about favourite|
 | /api/companies/ | POST | CompanySerializer | Create company |
 | /api/companies/ | PUT | CompanySerializer | ?id=x -> update company with id x |
 | /api/companies/ | DELETE | - | ?id=x -> delete company with id x |
-| /api/comments/ | GET | - | ?id=x -> get comments from company with id x |
+| /api/comments/ | GET | - | ?id=x -> get comments and replies from company with id x |
 | /api/comments/ | POST | CommentSerializer | Create comment |
 | /api/comments/ | PUT | CommentSerializer | ?id=x -> update comment with id x |
 | /api/comments/ | DELETE | - | ?id=x -> delete comment with id x |

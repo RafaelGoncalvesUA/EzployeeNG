@@ -17,16 +17,16 @@ def get_comments(request):
     serializer = CommentSerializer(comments, many=True)
 
     for comment in serializer.data:
-
+        pic = User.objects.get(id=comment['user']).profile_pic
+        comment['img_url'] = None if not pic else pic.url
         comment['replies'] = [
             {
                 'text' : reply.text,
                 'name': reply.user.first_name + ' ' + reply.user.last_name,
-                'img_url' : reply.user.profile_pic.url,
+                'img_url' : None if not pic else reply.user.profile_pic.url,
                 'time': reply.time,
             } for reply in Reply.objects.filter(comment_id=comment['id'])
         ]
-        comment['img_url'] = User.objects.get(id=comment['user']).profile_pic.url
 
     return Response(serializer.data, status=status.HTTP_200_OK)
 

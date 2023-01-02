@@ -58,7 +58,16 @@
             <div class="col-6">
                 <app-edit-offer [offer]="offer"></app-edit-offer>
             </div>
+
         </div>
+
+        <button *ngIf="!offer.fav" class='fav_button' (click)="fav()">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+        </button>
+
+        <button *ngIf="offer.fav" class='fav_button' (click)="unfav()">
+            <i class="fa fa-heart" aria-hidden="true"></i>
+        </button>
 
         <!-- {% if session == "user" %}
             {% if offer.fav %}
