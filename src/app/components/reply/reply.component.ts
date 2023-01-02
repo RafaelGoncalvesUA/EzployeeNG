@@ -15,8 +15,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class ReplyComponent implements OnInit {
 
   @Input() reply: Reply;
+  @Input() companyId: number;
   @Output() replyDeleted = new EventEmitter<boolean>();
-  user: User;
   ableToDelete: boolean = false;
   userPic: any;
 
@@ -26,43 +26,34 @@ export class ReplyComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.getUserInfo(this.reply.user);
-
+    
     //check permissions
-    if (this.reply.company == +this.authService.getUserInfo().id)
-      this.ableToDelete = true;
-    else
-      this.ableToDelete = false;
+    if (this.authService.loggedIn()) {
+      let userInfo = this.authService.getUserInfo();
 
+      if (userInfo.type == 'company' && +userInfo.id == this.companyId)
+        this.ableToDelete = true;
+    }
+    
+    this.getUserPic();
   }
 
-  getUserInfo(id: number) {
-    this.apiRequestService.getUserById(id).subscribe(data => {
-      this.user = data;
-      
-      if (this.user.profile_pic != null) {
-        this.apiRequestService.getImage(this.user.profile_pic).subscribe(data => {
-          this.createImageFromBlob(data);
-        }, error => {
-          console.log(error);
-        });
-      }
-      else
-        this.userPic = "https://www.w3schools.com/howto/img_avatar.png";
-    });
+  getUserPic() {
+    if (this.reply.img_url != null)
+      this.apiRequestService.getImage(this.reply.img_url).subscribe(data => this.createImageFromBlob(data));
+    else
+      this.userPic = "https://www.w3schools.com/howto/img_avatar.png";
   }
 
 
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
-    reader.addEventListener("load", () => {
-       this.userPic = reader.result;
-    }, false);
- 
-    if (image) {
+    reader.addEventListener("load", () => this.userPic = reader.result, false);
+    
+    if (image)
        reader.readAsDataURL(image);
-    }
   }
+
 
   deleteReply() {
     this.commentsService.deleteReply(this.reply.id).subscribe(data => this.replyDeleted.emit(true));

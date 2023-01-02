@@ -1,8 +1,7 @@
 export class Reply {
     id: number;
-    time: string;
     text: string;
-    comment: number;
-    company: number;
-    user: number;
+    name: number;
+    img_url: string;
+    time: string;
 }

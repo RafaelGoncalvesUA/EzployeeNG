@@ -12,6 +12,10 @@ def get_replies(request):
     comment_id = int(request.GET['id'])
     replies = Reply.objects.filter(comment_id=Comment.objects.get(id=comment_id))
     serializer = ReplySerializer(replies, many=True)
+    for reply in serializer.data:
+        pic = User.objects.get(id=reply['user']).profile_pic
+        reply['img_url'] = None if not pic else pic.url
+        reply['name'] = User.objects.get(id=reply['user']).first_name + ' ' + User.objects.get(id=reply['user']).last_name
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 # @api_view(['POST'])

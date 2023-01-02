@@ -1,3 +1,5 @@
+import { Reply } from './Reply';
+
 export class Comment {
     id: number;
     rating: number;
@@ -5,4 +7,7 @@ export class Comment {
     text: string;
     company: number;
     user: number;
+    img_url: string;
+    name: string;
+    replies: Reply[];
 }

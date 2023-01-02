@@ -1,17 +1,17 @@
 <!-- Loading -->
-<div *ngIf="user == undefined || userPic == undefined" class="text-center" style="margin-top: 50px;">
+<div *ngIf="userPic == undefined" class="text-center" style="margin-top: 50px;">
     <div class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
     </div>
 </div>  
 
-<div *ngIf="user != undefined && userPic != undefined" class="row comment">
+<div *ngIf="userPic != undefined" class="row comment">
 
     <div [ngStyle]="{'background-image': 'url(' + userPic + ')'}" class="col-4 profile-img-comment" ></div>
     
     <div class="col-8 comment-content">
         <div>
-            <span class="author-name">{{user.first_name + " " + user.last_name}}</span>
+            <span class="author-name">{{comment.name}}</span>
             <span class="comment-date">{{comment.time}}</span>
             <i (click)="deleteComment()" *ngIf="ableToDelete" class="fa fa-trash delete-icon" aria-hidden="true"></i>
             <i *ngIf="ableToReply" (click)="showReplyBox()" class="fa fa-reply reply-icon" aria-hidden="true"></i>
@@ -30,14 +30,14 @@
         </div>
 
         <!-- Loading -->
-        <div *ngIf="replies == undefined" class="text-center" style="margin-top: 50px;">
+        <div *ngIf="comment.replies == undefined" class="text-center" style="margin-top: 50px;">
             <div class="spinner-border" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
 
-        <div class="replies" style="cursor: pointer;" (click)="showReplyBox()" *ngIf="replies != undefined && replies.length > 0" >
-            <app-reply (replyDeleted)="reload()" *ngFor="let reply of replies" [reply]="reply"></app-reply>
+        <div class="replies" style="cursor: pointer;" (click)="showReplyBox()" *ngIf="comment.replies != undefined && comment.replies.length > 0" >
+            <app-reply (replyDeleted)="reload()" *ngFor="let reply of comment.replies" [reply]="reply" [companyId]="comment.company"></app-reply>
         </div>
 
 

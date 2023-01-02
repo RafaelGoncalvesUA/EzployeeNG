@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { Comment } from 'src/app/classes/Comment';
-import { Reply } from 'src/app/classes/Reply';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
-import { User } from 'src/app/classes/User';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CommentsService } from 'src/app/services/comments.service';
 
@@ -17,8 +15,6 @@ export class CommentComponent implements OnInit {
 
   @Input() comment: Comment;
   @Output() commentDeleted = new EventEmitter<boolean>();
-  user: User = null;
-  replies: Reply[];
   userPic: any;
   replyBox: boolean = false;
   ableToReply: boolean = false;
@@ -26,8 +22,8 @@ export class CommentComponent implements OnInit {
   
   constructor(
     private apiRequestService : ApiRequestsService,
-    private authService: AuthenticationService,
-    private commentsService: CommentsService
+    private commentsService: CommentsService,
+    private authService: AuthenticationService
     ) { }
 
   ngOnInit(): void {
@@ -41,23 +37,14 @@ export class CommentComponent implements OnInit {
         this.ableToDelete = true;
     }
 
-    this.getUserInfo(this.comment.user);
-    this.getReplies();
+    this.getUserPic();
   }
 
-  getReplies() {
-    this.apiRequestService.getRepliesByComment(this.comment.id).subscribe(data => this.replies = data);
-  }
-
-  getUserInfo(id: number) {
-    this.apiRequestService.getUserById(id).subscribe(data => {
-      this.user = data;
-      
-      if (this.user.profile_pic != null)
-        this.apiRequestService.getImage(this.user.profile_pic).subscribe(data => this.createImageFromBlob(data));
-      else
-        this.userPic = "https://www.w3schools.com/howto/img_avatar.png";
-    });
+  getUserPic() {
+    if (this.comment.img_url != null)
+    this.apiRequestService.getImage(this.comment.img_url).subscribe(data => this.createImageFromBlob(data));
+    else
+      this.userPic = "https://www.w3schools.com/howto/img_avatar.png";
   }
 
 
@@ -74,13 +61,18 @@ export class CommentComponent implements OnInit {
   }
 
   reload() {
-    this.getReplies();
+    //get recent replies
+    this.commentsService.getRepliesByComment(this.comment.id).subscribe(replies => {
+      this.comment.replies = replies;
+      this.getUserPic();
+    });
+
     this.replyBox = false;
   }
 
   deleteComment() {
     this.commentsService.deleteComment(this.comment.id).subscribe();
-    
+
     //notify parent
     this.commentDeleted.emit(true);
   }

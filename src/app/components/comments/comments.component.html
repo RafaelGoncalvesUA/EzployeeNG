@@ -11,13 +11,12 @@
     <div *ngIf="comments != undefined">
         <div style="margin-bottom: 30px;">
             <h2>{{comments.length}} comentário(s)</h2>
-            <hr>
+            <hr style="width: 98%;">
+
+            <app-comment-area *ngIf="ableToComment" [companyId]="companyId" (commentPosted)="reload()"></app-comment-area>
+            <a *ngIf="!fromReservedArea && !ableToComment" routerLink="/login" class="login-link">Iniciar sessão como utilizador para comentar</a>     
+
         </div>
         <app-comment (commentDeleted)="reloadAfterDelete()" *ngFor="let comment of comments" [comment]="comment"></app-comment>
     </div>
-
-    
-    <app-comment-area *ngIf="ableToComment" [companyId]="companyId" (commentPosted)="reload()"></app-comment-area>
-    <a *ngIf="!fromReservedArea && !ableToComment" routerLink="/login" class="login-link">Iniciar sessão como utilizador para comentar</a>
-
 </div>

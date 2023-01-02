@@ -13,7 +13,10 @@ def get_offers(request):
         offer_id = int(request.GET['id'])
         offer = Offer.objects.get(id=offer_id)
         serializer = OfferSerializer(offer)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        data_ = serializer.data
+        data_['company_id'] = offer.company.id
+        data_['company_name'] = offer.company.name
+        return Response(data_, status=status.HTTP_200_OK)
 
     elif 'company' in request.GET:
         company_id = int(request.GET['company'])

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { ApiRequestsService } from 'src/app/services/api-requests.service';
+import { CommentsService } from 'src/app/services/comments.service';
 import { Comment } from 'src/app/classes/Comment';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -17,7 +17,7 @@ export class CommentsComponent implements OnInit {
   ableToComment: boolean = false;
 
   constructor(
-    private apiRequestService : ApiRequestsService,
+    private commentsService: CommentsService,
     private authService: AuthenticationService,
     ) { }
 
@@ -34,7 +34,8 @@ export class CommentsComponent implements OnInit {
   }
   
   getComments() {
-    this.apiRequestService.getCommentsByCompany(this.companyId).subscribe(data => {
+    this.commentsService.getCommentsByCompany(this.companyId).subscribe(data => {
+      console.log(data);
       this.comments = data;
     });
   }
