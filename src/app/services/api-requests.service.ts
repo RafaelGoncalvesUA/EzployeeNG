@@ -52,16 +52,6 @@ export class ApiRequestsService {
     return this.http.get(url, { responseType: 'blob' });
   }
 
-  getCommentsByCompany(id: number): Observable<any> {
-    const url = this.baseUrl + '/comments?id=' + id;
-    return this.http.get(url);
-  }
-
-  getRepliesByComment(id: number): Observable<any> {
-    const url = this.baseUrl + '/replies?id=' + id;
-    return this.http.get(url);
-  }
-
   getUserById(id: number): Observable<any> {
     const url = this.baseUrl + '/user/account?id=' + id;
     return this.http.get(url);
