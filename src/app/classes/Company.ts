@@ -7,6 +7,7 @@ export interface CompanyInterface {
     logo: null;
     avg_rating: number;
     num_ratings: number;
+    fav: boolean;
 }
 
 export class Company {
@@ -18,6 +19,7 @@ export class Company {
     logo: null;
     avg_rating: number;
     num_ratings: number;
+    fav: boolean;
     
     constructor(company: CompanyInterface) {
         this.id = company.id;
@@ -28,5 +30,6 @@ export class Company {
         this.logo = company.logo;
         this.avg_rating = company.avg_rating;
         this.num_ratings = company.num_ratings;
+        this.fav = company.fav;
     }
 }
