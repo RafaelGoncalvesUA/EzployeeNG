@@ -15,6 +15,7 @@ export interface OfferInterface {
     is_active: boolean;
     company: number;
     fav: boolean;
+    company_name: string;
 }
 
 
@@ -35,6 +36,7 @@ export class Offer {
     is_active: boolean;
     company: number;
     fav: boolean;
+    company_name: string;
 
     constructor(data: OfferInterface) {
         this.id = data.id;
@@ -53,6 +55,7 @@ export class Offer {
         this.is_active = data.is_active;
         this.company = data.company;
         this.fav = data.fav;
+        this.company_name = data.company_name;
     }
 
 }

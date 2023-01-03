@@ -14,7 +14,6 @@ def get_offers(request):
         offer = Offer.objects.get(id=offer_id)
         serializer = OfferSerializer(offer)
         data_ = serializer.data
-        data_['company_id'] = offer.company.id
         data_['company_name'] = offer.company.name
         return Response(data_, status=status.HTTP_200_OK)
 

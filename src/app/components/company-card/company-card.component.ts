@@ -20,6 +20,7 @@ export class CompanyCardComponent implements OnInit {
   logoImage: any;
   isImageLoading: boolean = true;
   userId: number;
+  userType: string;
 
   constructor(
     private apiRequestService : ApiRequestsService,
@@ -30,6 +31,7 @@ export class CompanyCardComponent implements OnInit {
   ngOnInit() {
     //check if user is logged in
     this.userId = this.authenticationService.loggedIn() ? +this.authenticationService.getUserInfo().id : undefined;
+    this.userType = this.authenticationService.loggedIn() ? this.authenticationService.getUserInfo().type : undefined;
 
     if (this.company.logo != null)
       this.getImageFromService();
