@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
+import { filter, lastValueFrom } from 'rxjs';
 import { Offer } from 'src/app/classes/Offer';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ApiRequestsService } from 'src/app/services/api-requests.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -15,6 +16,7 @@ declare var $: any;
 export class OffersPageComponent implements OnInit {
 
   offers: Offer[];
+  filterForm: FormGroup;
 
   constructor(
     private apiRequestsService: ApiRequestsService,
@@ -48,8 +50,22 @@ export class OffersPageComponent implements OnInit {
     this.apiRequestsService.getOffers().subscribe(offers => this.offers = offers);
   }
 
-  filterOffers(filter: string) {
-    console.log(filter);
+  // infinite string args
+  onSubmit() {
+    let filters = {
+      "title": this.filterForm.get('title').value,
+      "min": this.filterForm.get('min').value,
+      "max": this.filterForm.get('max').value,
+      "order": this.filterForm.get('order').value
+    };
+    years_opts = ["0_3", "3_5", "5_10", "10_"]
+    work_models_opts = ["remoto", "presencial", "hibrido"]
+    contract_types_opts = ["..."]
+    
+
+
+    this.apiRequestsService.getOffers(filters).subscribe(offers => this.offers = offers);
+
   }
 
 }
