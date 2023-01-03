@@ -20,6 +20,7 @@ export class OfferCardComponent implements OnInit {
   @Output() unfavEvent = new EventEmitter();
   companyLogo: any;
   userId: number;
+  userType: string;
 
   constructor(
     private apiRequestService : ApiRequestsService,
@@ -30,6 +31,8 @@ export class OfferCardComponent implements OnInit {
   ngOnInit(): void {
     //check if user is logged in
     this.userId = this.authenticationService.loggedIn() ? +this.authenticationService.getUserInfo().id : undefined;
+    this.userType = this.authenticationService.loggedIn() ? this.authenticationService.getUserInfo().type : undefined;
+
 
     this.getCompanyLogo();
   }

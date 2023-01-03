@@ -41,11 +41,7 @@ export class CommentsComponent implements OnInit {
   }
 
   reload() {
-    setTimeout(() => this.getComments(), 1000);
-  }
-
-  reloadAfterDelete() {
-    setTimeout(() => this.getComments(), 1000);
+    setTimeout(() => this.getComments(), 500);
   }
 
 }

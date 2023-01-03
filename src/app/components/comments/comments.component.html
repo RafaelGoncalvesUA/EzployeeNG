@@ -17,6 +17,6 @@
             <a *ngIf="!fromReservedArea && !ableToComment" routerLink="/login" class="login-link">Iniciar sessão como utilizador para comentar</a>     
 
         </div>
-        <app-comment (commentDeleted)="reloadAfterDelete()" *ngFor="let comment of comments" [comment]="comment"></app-comment>
+        <app-comment (commentDeleted)="reload()" *ngFor="let comment of comments" [comment]="comment"></app-comment>
     </div>
 </div>
