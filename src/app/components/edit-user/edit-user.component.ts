@@ -63,7 +63,7 @@ export class EditUserComponent implements OnInit {
         formData = new FormData();
         formData.append('first_name', this.editUserForm.value.first_name);
         formData.append('last_name', this.editUserForm.value.last_name);
-        formData.append('email', this.editUserForm.value.email);
+        formData.append('email', this.user.email);
         formData.append('password', this.editUserForm.value.password);
         formData.append('profile_pic', this.editUserForm.get('profile_pic').value);
       }

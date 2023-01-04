@@ -16,6 +16,7 @@ export class CompaniesPageComponent implements OnInit {
 
   filterForm: FormGroup;
   companies: Company[] = [];
+  names: any;
   
   constructor(
     private apiRequestsService: ApiRequestsService,
@@ -34,13 +35,22 @@ export class CompaniesPageComponent implements OnInit {
     //get companies
     if (this.authenticationService.loggedIn()) {
       let userId = +this.authenticationService.getUserInfo().id;
-      this.apiRequestsService.getCompanies({user_id: userId}).subscribe(companies => this.companies = companies);
+      this.apiRequestsService.getCompanies({user_id: userId}).subscribe(companies => {
+        this.companies = companies;
+        this.setupAutocomplete();
+      });
     } else {
-      this.apiRequestsService.getCompanies().subscribe(companies => this.companies = companies);
+      this.apiRequestsService.getCompanies().subscribe(companies => {
+        this.companies = companies
+        this.setupAutocomplete();
+      });
     }
 
+  }
+  
+  setupAutocomplete() {
     //autocomplete
-    let names = this.companies.map(company => company.name);
+    let names = this.names = this.companies.map(company => company.name);
     names.sort();
     $('#name').autocomplete({
       source: function(request, response) {
@@ -49,7 +59,7 @@ export class CompaniesPageComponent implements OnInit {
       }
     });
   }
-
+  
   onSubmit() {
     let filters = {
       "name": this.filterForm.get('name').value,

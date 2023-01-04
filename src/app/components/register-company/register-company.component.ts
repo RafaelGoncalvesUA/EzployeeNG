@@ -21,6 +21,7 @@ export class RegisterCompanyComponent implements OnInit {
   validLocation: boolean = true;
   validDescription: boolean = true;
   logo: boolean = false;
+  registerFail: boolean = false;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -47,7 +48,7 @@ export class RegisterCompanyComponent implements OnInit {
       this.logo = false;
   }
 
-  async onSubmit() {
+  onSubmit() {
     this.validName = this.registerForm.controls['nome'].valid;
     this.validEmail = this.registerForm.controls['email'].valid;
     this.validPassword = this.registerForm.controls['password'].valid;
@@ -77,15 +78,17 @@ export class RegisterCompanyComponent implements OnInit {
         }
       }
 
-      const response$ = this.authenticationService.registerCompany(formData);
-      this.response = await lastValueFrom(response$);
-      console.log(this.response);
+      this.authenticationService.registerCompany(formData).subscribe(response => {
+        
+        if ('error' in response) {
+          this.registerFail = true;
+          this.registerForm.reset();
+        }
+        else
+          this.router.navigate(['/login']);
 
-      // //if success
-      this.router.navigate(['/login']);
+      });
 
-      //TODO: if not success
-      //show error message in UI
     }
   }
 

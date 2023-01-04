@@ -1,9 +1,0 @@
-Conta de empresa
-
-email: apple@apple.com
-pass: apple
-
-Conta de utilizador
-
-email: user1@user.com
-pass: user1

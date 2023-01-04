@@ -41,6 +41,16 @@ def get_offers(request):
             contract_types = request.GET.getlist('type')
             order = int(request.GET['order'])
 
+            # print(
+            #     f"{title=}\n"
+            #     f"{salary_min=}\n"
+            #     f"{salary_max=}\n"
+            #     f"{years_ranges=}\n"
+            #     f"{work_models=}\n"
+            #     f"{contract_types=}\n"
+            #     f"{order=}\n"
+            # )
+
             order_ = [
                 Lower('title'),
                 Lower('title').desc(),
@@ -60,7 +70,6 @@ def get_offers(request):
                 work_model__in=work_models,
                 contract_type__in=contract_types,
             ).order_by(order_[order])
-
         else:
             offers = Offer.objects.all()
 

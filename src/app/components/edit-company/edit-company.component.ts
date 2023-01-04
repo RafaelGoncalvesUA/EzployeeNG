@@ -60,7 +60,7 @@ export class EditCompanyComponent implements OnInit {
       if (this.logo) {
         formData = new FormData();
         formData.append('name', this.editCompanyForm.value.nome);
-        formData.append('email', this.editCompanyForm.value.email);
+        formData.append('email', this.company.email);
         formData.append('password', this.editCompanyForm.value.password);
         formData.append('location', this.editCompanyForm.value.localizacao);
         formData.append('description', this.editCompanyForm.value.descricao);

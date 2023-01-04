@@ -34,6 +34,11 @@ export class ApiRequestsService {
     return this.http.get<Offer[]>(url);
   }
 
+  getOffersByFilters(filters): Observable<Offer[]> {
+    const url = this.baseUrl + '/offers?' + filters;
+    return this.http.get<Offer[]>(url);
+  }
+
   getCompanies(args?: any): Observable<Company[]> {
     const url = this.baseUrl + '/companies';
 

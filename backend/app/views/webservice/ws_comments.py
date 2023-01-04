@@ -38,6 +38,11 @@ def post_comment(request):
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
+        if serializer.data['rating'] != 0:
+            company = Company.objects.get(id=serializer.data['company'])  
+            company.num_ratings += 1
+            company.avg_rating = (company.avg_rating * (company.num_ratings - 1) + int(serializer.data["rating"])) / company.num_ratings
+            company.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

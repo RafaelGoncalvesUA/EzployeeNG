@@ -1,11 +1,6 @@
 # Ezployee
 O Ezployee é uma plataforma útil e pertinente, que conecta empresas a potenciais futuros funcionários, na medida em que permite a publicação de ofertas de emprego, com salários, modelos de trabalho, contactos da empresa para a candidatura, entre outras informações. Enquanto utilizador, é possível comentar os perfis das empresas e classificá-las, com o intuito de ajudar outros utilizadores a tomar uma decisão ponderada e consciente, adicionar ofertas e empresas aos favoritos para consulta posterior e claro, pesquisar empresas e ofertas, com base em filtros do utilizador.
 
->Ver site no [Python Anywhere](http://rafego16.pythonanywhere.com/)
-
-## Base de dados da aplicação
-- Versão do PythonAnywhere: MySQL
-- Versão local: SQLite
 
 ## Créditos
 Pedro Rodrigues (102778)
