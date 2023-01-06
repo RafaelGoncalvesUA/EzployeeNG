@@ -14,16 +14,14 @@ declare var $: any;
 })
 export class OffersPageComponent implements OnInit {
 
-  offers: Offer[];
+  offers: Offer[] = undefined;
   filterForm: FormGroup;
   isValid: boolean = true;
 
   constructor(
     private apiRequestsService: ApiRequestsService,
     private authenticationService: AuthenticationService
-    ) {
-    this.offers = [];
-  }
+    ) {}
 
   ngOnInit() {
 
@@ -93,6 +91,7 @@ export class OffersPageComponent implements OnInit {
 
     let filter = '';
     this.isValid = true;
+    this.offers = undefined;
 
     const yearsValues = {
       'years1': '0-3 anos',

@@ -113,18 +113,23 @@
 
     <div style="margin-top: 25px;">
 
-        <div *ngIf="offers.length > 0; else elseBlock" class="row">
+        <div *ngIf="offers == undefined" class="text-center" style="margin-top: 50px;">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
+        <div *ngIf="offers != undefined && offers.length > 0" class="row">
             <div *ngFor="let offer of offers" class="col-12 col-xl-6">
                 <app-offer-card [offer]="offer"></app-offer-card>
             </div>
         </div>
 
-        <ng-template #elseBlock>
+        <div *ngIf="offers != undefined && offers.length == 0">
             <div  class="col-12">
                 <h4>Sem ofertas correspondentes aos filtros.</h4>
             </div>
-        </ng-template>
-
+        </div>
     </div>
 
 </div>

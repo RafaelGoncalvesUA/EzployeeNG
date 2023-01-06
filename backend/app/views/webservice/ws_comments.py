@@ -19,6 +19,7 @@ def get_comments(request):
     for comment in serializer.data:
         pic = User.objects.get(id=comment['user']).profile_pic
         comment['img_url'] = None if not pic else pic.url
+        comment['time'] = comment['time'].split('.')[0]
         comment['name'] = User.objects.get(id=comment['user']).first_name + ' ' + User.objects.get(id=comment['user']).last_name
         comment['replies'] = [
             {
@@ -26,7 +27,7 @@ def get_comments(request):
                 'text' : reply.text,
                 'name': reply.user.first_name + ' ' + reply.user.last_name,
                 'img_url' : None if not pic else reply.user.profile_pic.url,
-                'time': reply.time,
+                'time': str(reply.time).split('.')[0],
             } for reply in Reply.objects.filter(comment_id=comment['id'])
         ]
 

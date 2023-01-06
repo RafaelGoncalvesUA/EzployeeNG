@@ -34,7 +34,7 @@ export class CompanyCardComponent implements OnInit {
     this.userType = this.authenticationService.loggedIn() ? this.authenticationService.getUserInfo().type : undefined;
 
     if (this.company.logo != null)
-      this.getImageFromService();
+      this.logoImage = "https://rafego16.pythonanywhere.com/" + this.company.logo;
     else
       this.logoImage = "assets/images/default_image.png";
 
@@ -42,31 +42,6 @@ export class CompanyCardComponent implements OnInit {
     this.company.avg_rating = Number((this.company.avg_rating).toFixed(1));
   }
 
-
-  createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener("load", () => {
-       this.logoImage = reader.result;
-    }, false);
- 
-    if (image) {
-       reader.readAsDataURL(image);
-    }
-  }
-
-  
-  getImageFromService() {
-    if (this.company.logo != null) {
-      this.isImageLoading = true;
-      this.apiRequestService.getImage(this.company.logo).subscribe(data => {
-        this.createImageFromBlob(data);
-        this.isImageLoading = false;
-      }, error => {
-        this.isImageLoading = false;
-        console.log(error);
-      });
-    }
-  }
 
   fav() {
     if (this.userId == undefined) {

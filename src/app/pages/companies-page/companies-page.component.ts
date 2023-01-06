@@ -15,7 +15,7 @@ declare var $: any;
 export class CompaniesPageComponent implements OnInit {
 
   filterForm: FormGroup;
-  companies: Company[] = [];
+  companies: Company[] = undefined;
   names: any;
   
   constructor(
@@ -61,6 +61,8 @@ export class CompaniesPageComponent implements OnInit {
   }
   
   onSubmit() {
+    this.companies = undefined;
+    
     let filters = {
       "name": this.filterForm.get('name').value,
       "rating": this.filterForm.get('rating').value,
