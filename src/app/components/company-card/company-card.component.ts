@@ -34,7 +34,7 @@ export class CompanyCardComponent implements OnInit {
     this.userType = this.authenticationService.loggedIn() ? this.authenticationService.getUserInfo().type : undefined;
 
     if (this.company.logo != null)
-      this.logoImage = "https://rafego16.pythonanywhere.com/" + this.company.logo;
+      this.logoImage = "https://rafego16.pythonanywhere.com" + this.company.logo;
     else
       this.logoImage = "assets/images/default_image.png";
 

@@ -42,7 +42,7 @@ export class CommentComponent implements OnInit {
 
   getUserPic() {
     if (this.comment.img_url != null) {
-      this.userPic = "https://rafego16.pythonanywhere.com/" + this.comment.img_url;
+      this.userPic = "https://rafego16.pythonanywhere.com" + this.comment.img_url;
       // this.apiRequestService.getImage(this.comment.img_url).subscribe(data => this.createImageFromBlob(data));
     }
     else

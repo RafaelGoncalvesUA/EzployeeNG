@@ -39,8 +39,8 @@ export class OfferCardComponent implements OnInit {
 
   //async para esperar pelo ultimo valor do observable
   getCompanyLogo() {
-    if (this.offer.company['logo'] != null) {
-      this.companyLogo = "https://rafego16.pythonanywhere.com/" + this.offer.img_url;
+    if (this.offer.img_url != null) {
+      this.companyLogo = "https://rafego16.pythonanywhere.com" + this.offer.img_url;
       // this.apiRequestService.getImage(this.offer.company['logo']).subscribe(data => this.createImageFromBlob(data));
     }
     else

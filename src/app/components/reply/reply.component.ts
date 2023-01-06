@@ -40,7 +40,7 @@ export class ReplyComponent implements OnInit {
 
   getUserPic() {
     if (this.reply.img_url != null) {
-      this.userPic = "https://rafego16.pythonanywhere.com/" + this.reply.img_url;
+      this.userPic = "https://rafego16.pythonanywhere.com" + this.reply.img_url;
       // this.apiRequestService.getImage(this.reply.img_url).subscribe(data => this.createImageFromBlob(data));
     }
     else
