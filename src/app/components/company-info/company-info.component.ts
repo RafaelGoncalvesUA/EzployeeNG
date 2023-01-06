@@ -22,8 +22,10 @@ export class CompanyInfoComponent implements OnInit {
 
   //async para esperar pelo ultimo valor do observable
   async getCompanyLogo() {
-    if (this.company.logo != null)
-      this.apiRequestService.getImage(this.company.logo).subscribe(data => this.createImageFromBlob(data));
+    if (this.company.logo != null) {
+      this.logoImage = "https://rafego16.pythonanywhere.com/" + this.company.logo;
+      // this.apiRequestService.getImage(this.company.logo).subscribe(data => this.createImageFromBlob(data));
+    }
     else
       this.logoImage = "assets/images/default_image.png";
   }

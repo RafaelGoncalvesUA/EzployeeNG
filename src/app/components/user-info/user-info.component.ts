@@ -23,8 +23,10 @@ export class UserInfoComponent implements OnInit {
 
   //async para esperar pelo ultimo valor do observable
   async getCompanyLogo() {
-    if (this.user.profile_pic != null)
-      this.apiRequestService.getImage(this.user.profile_pic).subscribe(data => this.createImageFromBlob(data));
+    if (this.user.profile_pic != null) {
+      this.profilePic = "https://rafego16.pythonanywhere.com/" + this.user.profile_pic;
+      // this.apiRequestService.getImage(this.user.profile_pic).subscribe(data => this.createImageFromBlob(data));
+    }
     else
       this.profilePic = "assets/images/default_image.png";
   }

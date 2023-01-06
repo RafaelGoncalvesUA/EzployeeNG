@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class AuthenticationService {
 
-  private baseUrl = 'http://localhost:8000/api';
-  private baseUrlImages = 'http://localhost:8000';
+  private baseUrl = 'https://rafego16.pythonanywhere.com/api';
+  private baseUrlImages = 'https://rafego16.pythonanywhere.com';
 
   constructor(private http: HttpClient) { }
 

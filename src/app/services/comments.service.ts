@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CommentsService {
 
-  private baseUrl = 'http://localhost:8000/api';
+  private baseUrl = 'https://rafego16.pythonanywhere.com/api';
 
   constructor(private http: HttpClient) {}
 
