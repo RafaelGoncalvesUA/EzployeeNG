@@ -15,12 +15,16 @@ def get_offers(request):
         serializer = OfferSerializer(offer)
         data_ = serializer.data
         data_['company_name'] = offer.company.name
+        data_['img_url'] = None if not offer.company.logo else offer.company.logo.url
         return Response(data_, status=status.HTTP_200_OK)
 
     elif 'company' in request.GET:
         company_id = int(request.GET['company'])
         offers = Offer.objects.filter(company_id=company_id)
         serializer = OfferSerializer(offers, many=True)
+        for offer in serializer.data:
+            company_logo= Company.objects.get(id=offer['company']).logo
+            offer['img_url'] = None if not company_logo else company_logo.url
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     else:
@@ -81,6 +85,9 @@ def get_offers(request):
         ids = [offer.id for offer in faved_offers]
         for offer in serializer.data:
             offer['fav'] = offer['id'] in ids
+            company_logo= Company.objects.get(id=offer['company']).logo
+            offer['img_url']=None if not company_logo else company_logo.url
+
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 

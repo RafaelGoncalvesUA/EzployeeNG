@@ -37,6 +37,7 @@ export class Offer {
     company: number;
     fav: boolean;
     company_name: string;
+    img_url: string;
 
     constructor(data: OfferInterface) {
         this.id = data.id;
